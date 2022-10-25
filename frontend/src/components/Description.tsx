@@ -43,11 +43,15 @@ function Description( {restaurant}: Props) {
               </div>
             </div>
             <div id="description-photos">
-              <h2>{} Photos</h2>
-              <img />
+              <h2>{restaurant.images.length} Photos</h2>
+              <div>
+                {restaurant.images.map((image) => (
+                    <img key={image.id} src={image.url} alt="restaurant" />
+                ))}
+              </div>
             </div>
             <div id="description-reviews">
-              <h2>What {} people are saying</h2>
+              <h2>What {restaurant.reviews.length} people are saying</h2>
             </div>
           </section>
         </aside>
