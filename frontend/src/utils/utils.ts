@@ -1,5 +1,5 @@
-export function getDateToday(date: string){
-    const today = new Date(date)
+export function getDateToday(){
+    const today = new Date()
     const day = today.getDay()
     const month = today.getMonth()
     const year = today.getFullYear()
