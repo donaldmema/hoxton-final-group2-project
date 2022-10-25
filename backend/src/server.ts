@@ -117,6 +117,138 @@ app.get("/validate", async (req, res) => {
   }
 });
 
+//This endpoint will get all the restaurants
+app.get("/restaurants", async (req, res) => {
+  try {
+    const restaurants = await prisma.restaurant.findMany({
+      include: { reviews: true, reservations: true },
+    });
+    res.send(restaurants);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get a restaurant by id
+app.get("/restaurants/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const restaurant = await prisma.restaurant.findUnique({
+      where: { id: Number(id) },
+      include: { reviews: true, reservations: true, menu: true, images: true },
+    });
+    res.send(restaurant);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get all the reviews for a restaurant by id
+app.get("/restaurants/:id/reviews", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reviews = await prisma.review.findMany({
+      where: { restaurantId: Number(id) },
+      include: { user: true },
+    });
+    res.send(reviews);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get all the reservations for a restaurant by id
+app.get("/restaurants/:id/reservations", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reservations = await prisma.reservation.findMany({
+      where: { restaurantId: Number(id) },
+      include: { claimedBy: true },
+    });
+    res.send(reservations);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get all the menu items for a restaurant by id
+app.get("/restaurants/:id/menu", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const menu = await prisma.menuItem.findMany({
+      where: { restaurantId: Number(id) },
+    });
+    res.send(menu);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get all reservations for a user by id
+app.get("/users/:id/reservations", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reservations = await prisma.reservation.findMany({
+      where: { userId: Number(id) },
+      include: { restaurant: true },
+    });
+    res.send(reservations);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get all restaurants that are located in a city
+app.get("/restaurants/city/:city", async (req, res) => {
+  try {
+    const { city } = req.params;
+    const restaurants = await prisma.restaurant.findMany({
+      where: { city },
+      include: { reviews: true, reservations: true },
+    });
+    res.send(restaurants);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get all restaurants by cuisine
+app.get("/restaurants/cuisine/:cuisine", async (req, res) => {
+  try {
+    const { cuisine } = req.params;
+    const restaurants = await prisma.restaurant.findMany({
+      where: { cuisineInfo: { contains: cuisine } },
+      include: { reviews: true, reservations: true },
+    });
+    res.send(restaurants);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
+//This endpoint will get all restaurants by name
+app.get("/restaurants/name/:name", async (req, res) => {
+  try {
+    const { name } = req.params;
+    const restaurants = await prisma.restaurant.findMany({
+      where: { name: { contains: name } },
+      include: { reviews: true, reservations: true },
+    });
+    res.send(restaurants);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Listening to http://localhost:${port}`);
 });
