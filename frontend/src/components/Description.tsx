@@ -3,6 +3,12 @@ import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
 import restaurantImage from "../assets/restaurant-photo.jpg";
 
 function Description() {
+    const [readMore, setReadMore] = React.useState(false);
+    
+    function readmore(){
+        setReadMore(!readMore);
+    }
+
   return (
     <main className="main">
       <div className="main-image"></div>
@@ -14,20 +20,19 @@ function Description() {
           </nav>
           <section className="description">
             <div id="description-overview">
-              <h1></h1>
-              <div>
-                <div>
+              <h1>OTTO RoofTop</h1>
+              <div className="icons-container">
+                <div className="icons-row ">
                   <MdOutlineModeComment />
-                  <span></span>
+                  <span>{} Reviews</span>
                 </div>
-                <div>
+                <div className="icons-row">
                   <MdFoodBank />
-                  <span></span>
+                  <span>{} Italian</span>
                 </div>
               </div>
-              <div>
-                <h3></h3>
-                <p></p>
+              <div className="description-text">
+                <p>{readMore ? }</p>
               </div>
             </div>
             <div id="description-photos">
