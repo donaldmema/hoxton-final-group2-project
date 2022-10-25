@@ -31,7 +31,7 @@ export function Search() {
         <option value="7">Larger Party</option>
       </select>
       <input placeholder="Location, Restaurant, or Cuisine"></input>
-      <button>Let's go</button>
+      <button type="submit">Let's go</button>
       </form>
     </div>
   );
