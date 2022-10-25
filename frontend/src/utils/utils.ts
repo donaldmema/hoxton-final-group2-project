@@ -1,7 +1,7 @@
-export function getDateToday(){
-    const date = new Date()
-    const day = date.getDate()
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
-    return `${year}-${month}-${day}`
+export function getDateToday(date: string){
+    const today = new Date(date)
+    const day = today.getDay()
+    const month = today.getMonth()
+    const year = today.getFullYear()
+    return `${day}/${month}/${year}`
 }
