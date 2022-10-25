@@ -1,16 +1,17 @@
 import React from "react";
 import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
+import restaurantImage from "../assets/restaurant-photo.jpg";
 
 function Description() {
   return (
     <main className="main">
-      <image />
-      <section>
+      <img src={restaurantImage} className="restaurantImage"/>
+      <section className="left-side">
         <nav>
-          <a href="#description-overview">Overview</a>
-          <a href="#description-photos">Photos</a>
-          <a href="#description-menu">Menu</a>
-          <a href="description-reviews">Reviews</a>
+          <a href="#description-overview"><button>Overview</button></a>
+          <a href="#description-photos"><button>Photos</button></a>
+          <a href="#description-menu"><button>Menu</button></a>
+          <a href="description-reviews"><button>Reviews</button></a>
         </nav>
         <section className="description">
         <div id="description-overview">
