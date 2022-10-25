@@ -1,5 +1,4 @@
 import { DefaultContext } from "react-icons";
-import { getDateToday } from "../utils/utils";
 
 export function Search() {
  
