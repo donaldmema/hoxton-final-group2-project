@@ -14,7 +14,11 @@ function RestaurantDetails() {
   useEffect(() => {
     fetch(`http://localhost:3005/restaurants/${params.id}`)
     .then(res => res.json())
-    .then(data => setRestaurant(data))
+    .then(
+      (result) => {
+        setRestaurant(result)
+      }
+    )
   }, [])
 
   return (

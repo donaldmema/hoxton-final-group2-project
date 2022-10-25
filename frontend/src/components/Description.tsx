@@ -9,10 +9,6 @@ type Props = {
 
 function Description( {restaurant}: Props) {
     const [readMore, setReadMore] = React.useState(false);
-    
-    function readmore(){
-        setReadMore(!readMore);
-    }
 
   return (
     <main className="main">
@@ -37,9 +33,7 @@ function Description( {restaurant}: Props) {
                 </div>
               </div>
               <div className="description-text">
-                <p onClick={() => {
-                    setReadMore(!readMore);
-                }}>{readMore ? restaurant.description.slice(0, 50) : restaurant.description}</p>
+                <p onClick={() => {setReadMore(!readMore)}}>{readMore ? restaurant.description.slice(0, 50) : restaurant.description}</p>
               </div>
             </div>
             <div id="description-photos">
