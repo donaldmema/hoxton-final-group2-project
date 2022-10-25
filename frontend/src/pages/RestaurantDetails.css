@@ -1,7 +1,6 @@
-.main{
-    
-}
-.main img{
-    width: 100%;
-    height: 700px;
+.main-image{
+    height: 50vh;
+    background: url("../assets/restaurant-photo.jpg");
+    background-size: 100%;
+    background-position: 100%;
 }
