@@ -1,8 +1,13 @@
 import React from "react";
 import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
 import restaurantImage from "../assets/restaurant-photo.jpg";
+import { Restaurant } from "../utils/types";
 
-function Description() {
+type Props = {
+    restaurant: Restaurant
+}
+
+function Description( {restaurant}: Props) {
     const [readMore, setReadMore] = React.useState(false);
     
     function readmore(){
@@ -20,19 +25,21 @@ function Description() {
           </nav>
           <section className="description">
             <div id="description-overview">
-              <h1>OTTO RoofTop</h1>
+              <h1>{restaurant.name}</h1>
               <div className="icons-container">
                 <div className="icons-row ">
                   <MdOutlineModeComment />
-                  <span>{} Reviews</span>
+                  <span>{restaurant.reviews.length} Reviews</span>
                 </div>
                 <div className="icons-row">
                   <MdFoodBank />
-                  <span>{} Italian</span>
+                  <span>{restaurant.cuisineInfo} Italian</span>
                 </div>
               </div>
               <div className="description-text">
-                <p>{readMore ? }</p>
+                <p onClick={() => {
+                    setReadMore(!readMore);
+                }}>{readMore ? restaurant.description.slice(0, 50) : restaurant.description}</p>
               </div>
             </div>
             <div id="description-photos">
