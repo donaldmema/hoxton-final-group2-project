@@ -32,7 +32,12 @@
 
 .description{
     display: grid;
-    gap: 10px;
+    gap: 40px;
+}
+
+#description-overview{
+    display: grid;
+    gap: 30px;
 }
 
 #description-overview h1{
@@ -50,6 +55,15 @@
     display: flex;
     gap: 5px;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.show-more{
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+.show-more-p{
+    transition: all 1s ease-in-out;
 }

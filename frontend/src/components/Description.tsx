@@ -8,7 +8,7 @@ type Props = {
 }
 
 function Description( {restaurant}: Props) {
-    const [readMore, setReadMore] = React.useState(false);
+    const [readMore, setReadMore] = React.useState(true);
 
   return (
     <main className="main">
@@ -25,19 +25,20 @@ function Description( {restaurant}: Props) {
               <div className="icons-container">
                 <div className="icons-row ">
                   <MdOutlineModeComment />
-                  <span>{restaurant.reviews.length} Reviews</span>
+                  <span>{restaurant.reviews.length} {restaurant.reviews.length === 1 ? "Review" : "Reviews"}</span>
                 </div>
                 <div className="icons-row">
                   <MdFoodBank />
-                  <span>{restaurant.cuisineInfo} Italian</span>
+                  <span>{restaurant.cuisineInfo}</span>
                 </div>
               </div>
               <div className="description-text">
-                <p onClick={() => {setReadMore(!readMore)}}>{readMore ? restaurant.description.slice(0, 50) : restaurant.description}</p>
+                <p className="show-more-p">{readMore ? restaurant.description.slice(0, 20) : restaurant.description} {readMore ? "..." : null} <span onClick={() => {setReadMore(!readMore)}} className="show-more">{readMore ? "(read more)" : "(show less)"}</span>
+                </p>
               </div>
             </div>
             <div id="description-photos">
-              <h2>{restaurant.images.length} Photos</h2>
+              <h2>{restaurant.images.length} {restaurant.images.length === 1 ? "Photo" : "Photos"}</h2>
               <div>
                 {restaurant.images.map((image) => (
                     <img key={image.id} src={image.url} alt="restaurant" />
@@ -45,7 +46,7 @@ function Description( {restaurant}: Props) {
               </div>
             </div>
             <div id="description-reviews">
-              <h2>What {restaurant.reviews.length} people are saying</h2>
+              <h2>What {restaurant.reviews.length} {restaurant.reviews.length === 1 ? "person is saying" : "people are saying"}</h2>
             </div>
           </section>
         </aside>
