@@ -12,8 +12,8 @@ function LogedinPage() {
       <Bussines/>
       <Header/>
       <Search />
-      <Reservations/>
       <Restaurants/>
+      <Reservations/>
     </div>
   )
 }
