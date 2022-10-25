@@ -6,12 +6,6 @@ export function Search() {
     <div className="search-table">
       <h1>Find your table for any occasion</h1>
       <form className="search-form">
-      {/* <select id="data" name="data">
-        <option value="October 25, 2022">October 25, 2022</option>
-        <option value="October 26, 2022">October 26, 2022</option>
-        <option value="October 27, 2022">October 27, 2022</option>
-      </select> */}
-    
       <input type="date" ></input>
       <select id="time" name="time">
         <option value="1">2:30 PM</option>

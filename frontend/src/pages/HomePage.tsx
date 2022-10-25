@@ -4,6 +4,7 @@ import { Bussines } from '../components/Bussines'
 import Header from '../components/Header'
 import { Search } from '../components/Search'
 import { Restaurants } from '../components/Restaurants';
+import JoinUs from '../components/ JoinUs';
 
 function HomePage() {
   return (
@@ -12,6 +13,7 @@ function HomePage() {
          <Header />
          <Search />
          <Restaurants/>
+         <JoinUs/>
     </div>
   )
 }
