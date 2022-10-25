@@ -4,7 +4,7 @@ export function Bussines(){
     return(
     <div className="bussines">
      <ul className="bussines-nav">
-            <NavLink  to={""}>For Businesses |</NavLink>
+            <NavLink  to={"/bussiness"}>For Businesses |</NavLink>
             <p>Help</p>
             <p>English</p>
           </ul>
