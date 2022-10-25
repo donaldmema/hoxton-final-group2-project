@@ -4,3 +4,27 @@
     background-size: 100%;
     background-position: 100%;
 }
+.left-side{
+    transform: translateY(-50px);
+    margin-left: 150px;
+    padding: 15px;
+    display: grid;
+    grid-auto-flow: column;
+    background-color: white;
+    border-radius: 10px;
+}
+.navigation-links{
+    display: flex;
+    gap: 30px;
+}
+.navigation-links a{
+    text-decoration: none;
+    color: grey;
+    font-size: 1.1rem;
+}
+.navigation-links a:hover{
+    color: red;
+    border-bottom: 2px solid red;
+    padding: 10px 0px;
+}
+

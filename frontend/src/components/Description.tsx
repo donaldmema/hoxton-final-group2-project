@@ -6,44 +6,40 @@ function Description() {
   return (
     <main className="main">
       <div className="main-image"></div>
-      <section className="left-side">
-        <nav>
-          <a href="#description-overview">
-            <button>Overview</button>
-          </a>
-          <a href="#description-photos">
-            <button>Photos</button>
-          </a>
-          <a href="#description-menu">
-            <button>Menu</button>
-          </a>
-          <a href="description-reviews">
-            <button>Reviews</button>
-          </a>
-        </nav>
-        <section className="description">
-          <div id="description-overview">
-            <h1></h1>
-            <div>
+        <aside className="left-side">
+          <nav className="navigation-links">
+            <div><a href="#description-overview">Overview</a></div>
+            <div><a href="#description-photos">Photos</a></div>
+            <div><a href="description-reviews">Reviews</a></div>
+          </nav>
+          <section className="description">
+            <div id="description-overview">
+              <h1></h1>
               <div>
-                <MdOutlineModeComment />
-                <span></span>
+                <div>
+                  <MdOutlineModeComment />
+                  <span></span>
+                </div>
+                <div>
+                  <MdFoodBank />
+                  <span></span>
+                </div>
               </div>
               <div>
-                <MdFoodBank />
-                <span></span>
+                <h3></h3>
+                <p></p>
               </div>
             </div>
-            <div>
-              <h3></h3>
-              <p></p>
+            <div id="description-photos">
+              <h2>{} Photos</h2>
+              <img />
             </div>
-          </div>
-          <div id="description-photos"></div>
-          <div id="description-menu"></div>
-          <div id="description-reviews"></div>
-        </section>
-      </section>
+            <div id="description-reviews">
+              <h2>What {} people are saying</h2>
+            </div>
+          </section>
+        </aside>
+      <aside className="right-side"></aside>
     </main>
   );
 }

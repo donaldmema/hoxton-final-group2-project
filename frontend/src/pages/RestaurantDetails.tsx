@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Bussines } from '../components/Bussines'
 import Description from '../components/Description'
 import Header from '../components/Header'
 import "./RestaurantDetails.css"
@@ -16,6 +17,7 @@ function RestaurantDetails() {
 
   return (
     <>
+      <Bussines />
       <Header />
       <Description />
     </>
