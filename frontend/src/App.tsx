@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route index element={<Navigate to="/homepage" />} />
         <Route path="/homepage" element={<HomePage />} />
-        <Route path="/restaurant" element={<RestaurantDetails />} />
+        <Route path="/restaurant/:id" element={<RestaurantDetails />} />
       </Routes>
     </div>
   );

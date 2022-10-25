@@ -65,7 +65,7 @@ export function Restaurants(){
         <div className="restaurants-feed">
           {restaurants.map((restaurant) => (
               <>
-              {/* <Link to={`/restaurant-detail/${restaurants.id}`}> */}
+              <Link to={`/restaurant/${restaurants}`}>
               <div className="restaurant-feed-item">
                 <img src={restaurant.profileImg} width="250px" height="135px"/>
                 <div className="restaurant-content">
@@ -74,10 +74,10 @@ export function Restaurants(){
                 <img src={stars} width="100px" height="20px"/> <h5>{restaurant.rating} reviews</h5>
                 </div>
                 <p>{restaurant.cuisineInfo} • {restaurant.priceInfo} • {restaurant.city}</p>
-                <button>Find next availble</button>
+                <button>Find next available</button>
                 </div>
                 </div>
-                {/* </Link> */}
+                </Link>
               </>
             ))}
             </div>
