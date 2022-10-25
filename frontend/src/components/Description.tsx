@@ -3,35 +3,46 @@ import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
 
 function Description() {
   return (
-    <div>
+    <main className="main">
       <image />
-      <main>
+      <section>
         <nav>
-          <button>Overview</button>
-          <button>Photos</button>
-          <button>Menu</button>
-          <button>Reviews</button>
+          <a href="#description-overview">Overview</a>
+          <a href="#description-photos">Photos</a>
+          <a href="#description-menu">Menu</a>
+          <a href="description-reviews">Reviews</a>
         </nav>
-        <section>
-          <h1></h1>
-          <div>
+        <section className="description">
+        <div id="description-overview">
+            <h1></h1>
             <div>
-              <MdOutlineModeComment />
-              <span></span>
+                <div>
+                    <MdOutlineModeComment />
+                    <span></span>
+                </div>
+                <div>
+                    <MdFoodBank />
+                    <span></span>
+                </div>
             </div>
             <div>
-              <MdFoodBank />
-              <span></span>
+                <h3></h3>
+                <p></p>
             </div>
-          </div>
-          <div>
-            <h3></h3>
-            <p></p>
-          </div>
+        </div>
+        <div id="description-photos">
+
+        </div>
+        <div id="description-menu">
+
+        </div>
+        <div id="description-reviews">
+
+        </div>
         </section>
-      </main>
-    </div>
-  );
+      </section>
+    </main>
+  )
 }
 
 export default Description;
