@@ -76,11 +76,7 @@ function App() {
       <Routes>
         <Route index element={<Navigate to="/homepage" />} />
         <Route path="/homepage" element={<HomePage />} />
-<<<<<<< HEAD
-        <Route path="/restaurant" element={<RestaurantDetails restaurants={restaurants}/>} />
-=======
-        <Route path="/restaurant/:id" element={<RestaurantDetails />} />
->>>>>>> ea3a93791cd6e09cc9b1d862ccee093c75cd35f9
+        <Route path="/restaurant" element={<RestaurantDetails />} />
       </Routes>
     </div>
   );

@@ -6,22 +6,22 @@ import Header from '../components/Header'
 import { Restaurant } from '../utils/types'
 import "./RestaurantDetails.css"
 
-type Props = {
-  restaurants: Restaurant[]
-}
-
-function RestaurantDetails( {restaurants}: Props) {
+function RestaurantDetails() {
+  const [restaurant, setRestaurant] = React.useState<Restaurant | null>(null)
 
   const params = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:3005/restaurants/${params.id}`)
+    .then(res => res.json())
+    .then(data => setRestaurant(data))
+  }, [])
 
   return (
     <>
       <Bussines />
-      <Header />
-      {restaurants.filter(restaurant => restaurant.id === params.id ).map((restaurant) => 
-        <Description restaurant={restaurant} />
-      )}
-      
+      <Header /> 
+      <Description restaurant={restaurant} />
     </>
   )
 }
