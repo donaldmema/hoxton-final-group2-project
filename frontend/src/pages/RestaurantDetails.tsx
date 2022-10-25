@@ -21,6 +21,10 @@ function RestaurantDetails() {
     )
   }, [])
 
+  if (!restaurant) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <Bussines />
