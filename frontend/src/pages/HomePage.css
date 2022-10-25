@@ -143,6 +143,35 @@
     display: grid;
     grid-auto-flow: column;
 }
+.JoinUs{
+    margin:100px 130px;
+    height:400px ;
+    background: url(https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?cs=srgb&dl=pexels-pixabay-260922.jpg&fm=jpg);
+    background-size: 100%;
+    background-position: 150px;
+    color: white;
+    display: grid;
+    grid-auto-flow: row;
+    justify-content: center;
+    align-content:center;
+}
+.JoinUs button{
+    background-color: #da3644;
+    width: 130px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    height: 35px;
+    justify-self: center;
+    margin: 10px;
+}
+.JoinUs a{
+    color: white;
+    text-decoration: none;
+}
+.JoinUs h2{
+    justify-self: center;
+}
 /* see available dates modal */
 
 .available-dates-modal__wrapper {
