@@ -11,7 +11,7 @@ function RestaurantDetails() {
                 <button>Menu</button>
                 <button>Reviews</button>
             </nav>
-            <section></section>
+            
         </main>
     </div>
   )
