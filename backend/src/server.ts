@@ -189,6 +189,20 @@ app.get("/restaurants/:id/menu", async (req, res) => {
   }
 });
 
+app.get("/users/:id/restaurant", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const restaurant = await prisma.restaurant.findFirst({
+      where: { managerId: Number(id) },
+      include: { reviews: true, reservations: true },
+    });
+    res.send(restaurant);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
 app.get("/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany({
