@@ -31,6 +31,7 @@ async function getCurrentUser(token: string) {
 
   const user = await prisma.user.findUnique({
     where: { id: decoded },
+    include: { reviews: true },
   });
 
   return user;
@@ -162,7 +163,6 @@ app.get("/restaurants/:id/reviews", async (req, res) => {
 //This end point creates a review!!...
 app.post("/user/reviews", async (req, res) => {
   try {
-
     const token = req.headers.authorization;
     if (!token) {
       res.status(400).send({ error: ["Token not provided"] });
@@ -204,11 +204,11 @@ app.post("/user/reviews", async (req, res) => {
       });
       res.send(review);
     } else {
-      res.status(400).send({errors})
+      res.status(400).send({ errors });
     }
   } catch (error) {
     //@ts-ignore
-    res.status(400).send({errors:[error.message]})
+    res.status(400).send({ errors: [error.message] });
   }
 });
 //This endpoint will get all the reservations for a restaurant by id

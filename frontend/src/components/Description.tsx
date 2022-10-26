@@ -1,9 +1,9 @@
 import React from "react";
 import { MdFoodBank, MdOutlineModeComment, MdReviews } from "react-icons/md";
-import restaurantImage from "../assets/restaurant-photo.jpg";
+
 import { Restaurant, User } from "../utils/types";
 import { AiFillStar, AiOutlineClockCircle, AiOutlineTag } from "react-icons/ai";
-import { SiDevdotto } from "react-icons/si";
+
 import { BiBuildings } from "react-icons/bi";
 import { ImSpoonKnife } from "react-icons/im";
 import { TfiBell } from "react-icons/tfi";
@@ -13,7 +13,7 @@ import { MdPayment } from "react-icons/md";
 
 type Props = {
   restaurant: Restaurant;
-  currentUser: User;
+  currentUser: User | null;
 };
 
 function Description({ restaurant, currentUser }: Props) {
@@ -82,7 +82,7 @@ function Description({ restaurant, currentUser }: Props) {
               </h2>
               <div className="description-photos-map">
                 {restaurant.images.map((image) => (
-                  <div>
+                  <div key={image.id}>
                     <img key={image.id} src={image.url} alt="restaurant" />
                   </div>
                 ))}
@@ -95,7 +95,38 @@ function Description({ restaurant, currentUser }: Props) {
                   ? "person is saying"
                   : "people are saying"}
               </h2>
-              <form>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  fetch(`http://localhost:3005/user/reviews`, {
+                    method: "POST",
+                    headers: {
+                      Authorization: localStorage.token,
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      review: e.target.text.value,
+                      rating: Number(e.target.rating.value),
+                      restaurantId: restaurant.id,
+                    }),
+                  })
+                    .then((rsp) => rsp.json())
+                    .then((data) => {
+                      if (data.errors) {
+                        alert(data.errors);
+                      } else {
+                        restaurant.reviews.push(data);
+                      }
+                    });
+                }}
+              >
+                <select name="rating" id="">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
                 <textarea
                   name="content"
                   id="text"
