@@ -158,6 +158,9 @@ function Description({ restaurant, currentUser }: Props) {
               </div>
             ) : null}
           </div>
+          <div>
+            
+          </div>
         </aside>
       </div>
     </main>

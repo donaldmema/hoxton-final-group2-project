@@ -4,13 +4,12 @@ import { Bussines } from "../components/Bussines";
 import Description from "../components/Description";
 import Header from "../components/Header";
 import { Restaurants } from "../components/Restaurants";
-import { Restaurant } from "../utils/types";
+import { Restaurant, User } from "../utils/types";
 
 type Props = {
-    currentUser: any;
-    signOut: () => void;
+    currentUser: User;
   };
-export function ProfilePage({currentUser, signOut}:Props){
+export function ProfilePage({currentUser}:Props){
     const [restaurant, setRestaurant] = React.useState<Restaurant | null>(null)
 
     const params = useParams()
@@ -29,10 +28,9 @@ export function ProfilePage({currentUser, signOut}:Props){
       return <div>Loading...</div>
     }
     return(
-        <>
-        <Bussines/>
-        <Header currentUser={currentUser} signOut={signOut}/>
-        {/* <Description restaurant={restaurant}/> */}
-        </>
+          
+          <main>
+
+          </main>
     )
 }

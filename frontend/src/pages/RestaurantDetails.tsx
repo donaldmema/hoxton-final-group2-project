@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom'
 import { Bussines } from '../components/Bussines'
 import Description from '../components/Description'
 import Header from '../components/Header'
-import { Restaurant } from '../utils/types'
+import { Restaurant, User } from '../utils/types'
+import { ProfilePage } from './ProfilePage'
 import "./RestaurantDetails.css"
 
 type Props = {
-  currentUser: any;
+  currentUser: User;
   signOut: () => void;
 };
 
@@ -34,7 +35,7 @@ function RestaurantDetails({currentUser, signOut}:Props) {
     <>
       <Bussines />
       <Header currentUser={currentUser} signOut={signOut}/> 
-      <Description currentUser={currentUser} restaurant={restaurant} />
+      {currentUser && currentUser.role === "ADMIN" ? <ProfilePage currentUser={currentUser} /> : <Description currentUser={currentUser} restaurant={restaurant} />}
     </>
   )
 }

@@ -81,6 +81,11 @@
     gap: 50px;
 }
 
+#description-reviews{
+    display: grid;
+    gap: 30px;
+}
+
 .review-stars{
     color: crimson;
     font-size: 1.1rem;
