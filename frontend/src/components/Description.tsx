@@ -112,7 +112,7 @@ function Description({ restaurant, currentUser }: Props) {
                           <p>{user.name}</p>
                           <div className="review-user-reviews">
                             <MdOutlineModeComment />
-                            <p>{user.reviews.length}</p>
+                            <p>{user.reviews.length} {user.reviews.length === 1 ? "review" : "reviews"}</p>
                           </div>
                         </div>
                         <div className="review-rating">
