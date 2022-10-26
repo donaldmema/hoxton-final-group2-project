@@ -39,9 +39,9 @@ function Description( {restaurant}: Props) {
             </div>
             <div id="description-photos">
               <h2>{restaurant.images.length} {restaurant.images.length === 1 ? "Photo" : "Photos"}</h2>
-              <div>
+              <div className="description-photos-map">
                 {restaurant.images.map((image) => (
-                    <img key={image.id} src={image.url} alt="restaurant" />
+                    <img key={image.id} src={image.url} alt="restaurant" width={400} />
                 ))}
               </div>
             </div>
