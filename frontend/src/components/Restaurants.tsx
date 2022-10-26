@@ -49,7 +49,7 @@ export function Restaurants() {
                     setSeeAvailableDates(true);
                   }}
                 >
-                  Find next availble
+                  Find next available
                 </button>
               </div>
             </div>
