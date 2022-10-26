@@ -26,6 +26,14 @@ export function SignUpForm(){
             id="name"
             required
           />
+           <label htmlFor="name">Email</label>
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            id="email"
+            required
+          />
           <label htmlFor="password">
             Password <span>*</span> <br />
             <p>Use at least 8 characters</p>
