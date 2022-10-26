@@ -77,3 +77,23 @@
     font-size: 1.1rem;
 }
 
+.review{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+}
+.review-user{
+    display: grid;
+    gap: 5px;
+}
+.review-user-img{
+    padding: 20px;
+    background-color: pink;
+    clip-path: circle();
+}
+.review-user p{
+    font-size: 1.05rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+

@@ -8,6 +8,7 @@ import { SignInForm } from "./pages/SignInForm";
 import { SignUpForm } from "./pages/SignUpForm";
 import { PageNotFound } from "./pages/PageNotFound";
 import { useState, useEffect } from "react";
+import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -52,6 +53,7 @@ function App() {
         <Route index element={<Navigate to="/homepage" />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/logedin" element={<LogedinPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/signin" element={<SignInForm signIn={signIn} />} />
         <Route path="/signup" element={<SignUpForm signIn={signIn} />} />
         <Route path="/restaurants" element={<RestaurantDetails />} />
