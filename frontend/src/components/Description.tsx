@@ -64,7 +64,7 @@ function Description( {restaurant}: Props) {
                           <p>{user.name}</p>
                           <div>
                             <MdOutlineModeComment />
-                            <p>{user.Reviews.length}</p>
+                            <p>{user.reviews.length}</p>
                           </div>
                     </div>
                     <div>
