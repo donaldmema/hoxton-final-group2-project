@@ -77,6 +77,10 @@ li {
 .search-form button {
   width: 130px;
   height: 50px;
+  border-radius: 5px;
+}
+.search-form button:hover {
+  background-color: #c42934;
 }
 .search-table {
   display: grid;
@@ -208,6 +212,9 @@ li {
   justify-self: center;
   margin: 10px;
 }
+.JoinUs button:hover {
+  background-color: #c42934;
+}
 .JoinUs a {
   color: white;
   text-decoration: none;
@@ -297,4 +304,32 @@ li {
 a {
   all: unset;
   text-decoration: none;
+}
+.signedin {
+  display: grid;
+  grid-auto-flow: column;
+  justify-self: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+.signedin button {
+  width: 70px;
+  height: 35px;
+  color: white;
+  background-color: #257f9f;
+  border: thin solid rgba(220, 220, 220, 0.548);
+  border-radius: 5px;
+}
+.react-icon {
+  font-size: 20px;
+  color: #257f9f;
+  padding-top: 5px;
+}
+.username {
+  display: grid;
+  grid-auto-flow: column;
+  padding-right: 20px;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
+import {  BsPersonFill } from "react-icons/bs";
 
 type Props = {
   currentUser: any;
@@ -30,10 +31,15 @@ function Header({ currentUser, signOut }: Props) {
       </ul>
       </>
       ) : (
-        <div>
-          <li className="find-job-navbar-signedin-three">
-              {/* {currentUser.name} */}
+        <div className="signedin">
+          <div className="username">
+          <li className="react-icon">
+              <BsPersonFill />
             </li>
+          <li>
+              {currentUser.name}
+            </li>
+            </div>
             <button
               onClick={() => {
                 signOut();

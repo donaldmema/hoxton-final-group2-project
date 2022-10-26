@@ -27,7 +27,7 @@ export function SignInForm({ signIn, currentUser, signOut }: Props) {
         } else {
           //sign them in
           signIn(data);
-          navigate("/select-community");
+          navigate("/logedin");
         }
       });
     }

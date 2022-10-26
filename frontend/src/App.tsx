@@ -41,7 +41,7 @@ function App() {
           localStorage.removeItem("token");
         } else {
           signIn(data);
-          navigate("/select-community");
+          navigate("/logedin");
         }
       });
     }
