@@ -24,7 +24,7 @@ export type Restaurant = {
   diningStyle: string;
   dressCode: string;
   additional: string;
-  managerId: User;
+  managerId: number;
   reviews: Review[];
   images: Image[];
   menus: Menu[];
