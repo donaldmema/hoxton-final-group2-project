@@ -3,13 +3,13 @@ import { MdFoodBank, MdOutlineModeComment, MdReviews } from "react-icons/md";
 import restaurantImage from "../assets/restaurant-photo.jpg";
 import { Restaurant, User } from "../utils/types";
 import { AiFillStar, AiOutlineClockCircle, AiOutlineTag } from "react-icons/ai";
-import {SiDevdotto} from "react-icons/si";
-import {BiBuildings} from "react-icons/bi";
-import {ImSpoonKnife} from "react-icons/im";
-import {TfiBell} from "react-icons/tfi";
-import {GiTravelDress} from "react-icons/gi";
-import {RiParkingBoxLine} from "react-icons/ri";
-import {MdPayment} from "react-icons/md";
+import { SiDevdotto } from "react-icons/si";
+import { BiBuildings } from "react-icons/bi";
+import { ImSpoonKnife } from "react-icons/im";
+import { TfiBell } from "react-icons/tfi";
+import { GiTravelDress } from "react-icons/gi";
+import { RiParkingBoxLine } from "react-icons/ri";
+import { MdPayment } from "react-icons/md";
 
 type Props = {
   restaurant: Restaurant;
@@ -83,11 +83,7 @@ function Description({ restaurant, currentUser }: Props) {
               <div className="description-photos-map">
                 {restaurant.images.map((image) => (
                   <div>
-                    <img
-                      key={image.id}
-                      src={image.url}
-                      alt="restaurant"
-                    />
+                    <img key={image.id} src={image.url} alt="restaurant" />
                   </div>
                 ))}
               </div>
@@ -99,6 +95,16 @@ function Description({ restaurant, currentUser }: Props) {
                   ? "person is saying"
                   : "people are saying"}
               </h2>
+              <form>
+                <textarea
+                  name="content"
+                  id="text"
+                  placeholder="Your Review?"
+                  required
+                  rows={5}
+                ></textarea>
+                <button>POST</button>
+              </form>
               <div className="reviews">
                 {users.map((user) =>
                   restaurant.reviews
@@ -112,7 +118,10 @@ function Description({ restaurant, currentUser }: Props) {
                           <p>{user.name}</p>
                           <div className="review-user-reviews">
                             <MdOutlineModeComment />
-                            <p>{user.reviews.length} {user.reviews.length === 1 ? "review" : "reviews"}</p>
+                            <p>
+                              {user.reviews.length}{" "}
+                              {user.reviews.length === 1 ? "review" : "reviews"}
+                            </p>
                           </div>
                         </div>
                         <div className="review-rating">
