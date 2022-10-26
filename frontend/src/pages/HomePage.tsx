@@ -5,12 +5,15 @@ import Header from '../components/Header'
 import { Search } from '../components/Search'
 import { Restaurants } from '../components/Restaurants';
 import JoinUs from '../components/ JoinUs';
-
-function HomePage() {
+type Props = {
+  currentUser: any;
+  signOut: () => void;
+};
+function HomePage({currentUser, signOut}:Props) {
   return (
     <div>
       <Bussines/>
-         <Header />
+         <Header currentUser={currentUser} signOut={signOut} />
          <Search />
          <Restaurants/>
          <JoinUs/>

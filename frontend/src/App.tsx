@@ -41,7 +41,7 @@ function App() {
           localStorage.removeItem("token");
         } else {
           signIn(data);
-          navigate("/select-community");
+          navigate("/logedin");
         }
       });
     }
@@ -51,13 +51,12 @@ function App() {
     <div className="App">
       <Routes>
         <Route index element={<Navigate to="/homepage" />} />
-        <Route path="/homepage" element={<HomePage />} />
-        <Route path="/logedin" element={<LogedinPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/signin" element={<SignInForm signIn={signIn} />} />
-        <Route path="/signup" element={<SignUpForm signIn={signIn} />} />
-        <Route path="/restaurants" element={<RestaurantDetails />} />
-        <Route path="/restaurants/:id" element={<RestaurantDetails />} />
+        <Route path="/homepage" element={<HomePage currentUser={currentUser} signOut={signOut} />} />
+        <Route path="/logedin" element={<LogedinPage currentUser={currentUser} signOut={signOut} />} />
+        <Route path="/profile" element={<ProfilePage currentUser={currentUser} signOut={signOut}/>} />
+        <Route path="/signin" element={<SignInForm currentUser={currentUser} signOut={signOut} signIn={signIn} />} />
+        <Route path="/signup" element={<SignUpForm currentUser={currentUser} signOut={signOut} signIn={signIn} />} />
+        <Route path="/restaurants/:id" element={<RestaurantDetails currentUser={currentUser} signOut={signOut}/>} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

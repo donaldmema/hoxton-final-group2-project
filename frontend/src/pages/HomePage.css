@@ -302,3 +302,31 @@ a {
   all: unset;
   text-decoration: none;
 }
+.signedin{
+  display: grid;
+  grid-auto-flow: column;
+  justify-self: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+.signedin button{
+  width: 70px;
+  height: 35px;
+  color: white;
+  background-color: #257f9f;
+  border: thin solid rgba(220, 220, 220, 0.548);
+  border-radius: 5px;
+}
+.react-icon{
+  font-size: 20px;
+  color: #257f9f;
+  padding-top: 5px;
+}
+.username{
+  display: grid;
+  grid-auto-flow: column;
+  padding-right: 20px;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

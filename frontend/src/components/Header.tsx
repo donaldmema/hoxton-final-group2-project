@@ -1,13 +1,21 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
+import {  BsPersonFill } from "react-icons/bs";
 
-function Header() {
+type Props = {
+  currentUser: any;
+  signOut: () => void;
+};
+
+function Header({ currentUser, signOut }: Props) {
   return (
     <div className="home-page-header">
       <li className="logo">
        <a href="/homepage"> <img src={logo} width="200px" alt="indeed-logo" /> </a>
       </li>
+      {currentUser === null ? (
+          <>
       <ul className="header-btn">
         <li className="signup">
           <button>
@@ -21,6 +29,27 @@ function Header() {
           </button>
         </li>
       </ul>
+      </>
+      ) : (
+        <div className="signedin">
+          <div className="username">
+          <li className="react-icon">
+              <BsPersonFill />
+            </li>
+          <li>
+              {currentUser.name}
+            </li>
+            </div>
+            <button
+              onClick={() => {
+                signOut();
+                localStorage.removeItem("token");
+              }}
+            >
+              Sign out
+            </button>
+        </div>
+         )}
     </div>
   );
 }

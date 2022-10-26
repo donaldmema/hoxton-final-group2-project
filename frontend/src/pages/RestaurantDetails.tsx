@@ -6,7 +6,12 @@ import Header from '../components/Header'
 import { Restaurant } from '../utils/types'
 import "./RestaurantDetails.css"
 
-function RestaurantDetails() {
+type Props = {
+  currentUser: any;
+  signOut: () => void;
+};
+
+function RestaurantDetails({currentUser, signOut}:Props) {
   const [restaurant, setRestaurant] = React.useState<Restaurant | null>(null)
 
   const params = useParams()
@@ -28,7 +33,7 @@ function RestaurantDetails() {
   return (
     <>
       <Bussines />
-      <Header /> 
+      <Header currentUser={currentUser} signOut={signOut}/> 
       <Description restaurant={restaurant} />
     </>
   )
