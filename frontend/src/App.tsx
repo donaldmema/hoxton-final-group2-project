@@ -17,7 +17,7 @@ function App() {
   function signIn(data: { user: any; token: string }) {
     setCurrentUser(data.user);
     localStorage.token = data.token;
-    if (data.user.role.toLowerCase() === "admin") navigate("/admin");
+    if (data.user.role.toLowerCase() === "admin") navigate("/profile");
     else navigate("/logedin");
   }
 
@@ -41,7 +41,6 @@ function App() {
           localStorage.removeItem("token");
         } else {
           signIn(data);
-          navigate("/logedin");
         }
       });
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import {  BsPersonFill } from "react-icons/bs";
 
@@ -32,14 +32,28 @@ function Header({ currentUser, signOut }: Props) {
       </>
       ) : (
         <div className="signedin">
-          <div className="username">
-          <li className="react-icon">
-              <BsPersonFill />
-            </li>
-          <li>
-              {currentUser.name}
-            </li>
-            </div>
+          {currentUser.role === "ADMIN"?(
+            <Link to={"/profile"}>
+            <div className="username">
+            <li className="react-icon">
+             <BsPersonFill />
+              </li>
+            <li>
+                {currentUser.name}
+              </li>
+              </div>
+              </Link>
+          ):(
+            <div className="username">
+            <li className="react-icon">
+             <BsPersonFill />
+              </li>
+            <li>
+                {currentUser.name}
+              </li>
+              </div>
+          )}
+          
             <button
               onClick={() => {
                 signOut();
