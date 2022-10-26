@@ -16,6 +16,8 @@ function App() {
   function signIn(data: { user: any; token: string }) {
     setCurrentUser(data.user);
     localStorage.token = data.token;
+    if (data.user.role.toLowerCase() === "admin") navigate("/admin");
+    else navigate("/logedin");
   }
 
   function signOut() {

@@ -56,23 +56,25 @@ function Description( {restaurant}: Props) {
             <div id="description-reviews">
               <h2>What {restaurant.reviews.length} {restaurant.reviews.length === 1 ? "person is saying" : "people are saying"}</h2>
               <div>
-                {restaurant.reviews.map((review) => (
+              {users.map((user) => (
+                restaurant.reviews.filter(review => user.id === review.userId).map((review) => (
                   <div key={review.id} className="review">
                     <div className="review-user">
-                      {users.map((user) => (
-                        <>
-                          <div>{user.id === review.userId ? user.name.charAt(0) : null}</div>
+                          <div>{user.name.charAt(0)}</div>
                           <p>{user.name}</p>
-                          <p>{user.reviews.length} {user.reviews.length === 1 ? "review" : "reviews"}</p>
-                        </>
-                      ))}
+                          <div>
+                            <MdOutlineModeComment />
+                            <p>{user.Reviews.length}</p>
+                          </div>
                     </div>
                     <div>
                       <div>
                           {Array(review.rating).fill(<AiFillStar className="review-stars" />)}
+                          <p>{review.review}</p>
                       </div>
                     </div>
                   </div>
+                ))
                 ))}
               </div>
             </div>
