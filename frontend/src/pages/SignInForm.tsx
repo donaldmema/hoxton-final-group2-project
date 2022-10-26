@@ -27,9 +27,13 @@ export function SignInForm({ signIn, currentUser, signOut }: Props) {
         } else {
           //sign them in
           signIn(data);
-          navigate("/profile");
         }
       });
+      if(currentUser.role === "ADMIN"){
+        navigate("/profile");
+      } else {
+        navigate("/logedin")
+      }
     }
   }
 
