@@ -45,7 +45,6 @@
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(24, 32, 58);
 }
-
 .icons-container{
     display: flex;
     gap: 20px;
@@ -67,3 +66,9 @@
 .show-more-p{
     transition: all 1s ease-in-out;
 }
+
+#description-photos {
+    display: grid;
+    gap: 50px;
+}
+
