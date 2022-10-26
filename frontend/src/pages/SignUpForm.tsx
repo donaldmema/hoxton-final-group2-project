@@ -41,7 +41,7 @@ export function SignUpForm(){
 
           <p>
             By creating an account or logging in, you understand and agree to
-            GjejeVet's <a href="">Terms</a>. You also acknowledge our{" "}
+             <a href=""> Terms</a> and <a href=""> Conditions</a>. You also acknowledge our{" "}
             <a href="">Cookies</a> and <a href="">Privacy</a> policies.
           </p>
 
