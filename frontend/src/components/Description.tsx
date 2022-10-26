@@ -1,7 +1,7 @@
 import React from "react";
 import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
 import restaurantImage from "../assets/restaurant-photo.jpg";
-import { Restaurant } from "../utils/types";
+import { Restaurant, User } from "../utils/types";
 
 type Props = {
     restaurant: Restaurant
@@ -47,6 +47,15 @@ function Description( {restaurant}: Props) {
             </div>
             <div id="description-reviews">
               <h2>What {restaurant.reviews.length} {restaurant.reviews.length === 1 ? "person is saying" : "people are saying"}</h2>
+              <div>
+                {restaurant.reviews.map((review) => (
+                  <div key={review.id} className="review">
+                    <div className="review-user">
+                      {review.}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         </aside>
