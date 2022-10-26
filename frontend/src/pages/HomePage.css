@@ -106,7 +106,7 @@
 }
 .restaurant-feed-item{
     width: 250px;
-    height: 280px;
+    height: 300px;
     border: thin solid gainsboro;
     border-radius: 5px;
 }
@@ -128,6 +128,11 @@
     color: #da3644;
     background-color: transparent;
     border-radius: 5px;
+}
+.restaurant-content h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .restaurant-content p{
     font-size: 14px;
