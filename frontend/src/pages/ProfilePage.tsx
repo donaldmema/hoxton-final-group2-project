@@ -24,7 +24,7 @@ export function ProfilePage({currentUser, signOut}:Props){
       .then((data) => setUsers(data));
     }, []);
     
-    useEffect(() => {
+    if (currentUser && !restaurant) {
       fetch(`http://localhost:3005/users/${currentUser?.id}/restaurant`)
       .then(res => res.json())
       .then(
@@ -32,7 +32,8 @@ export function ProfilePage({currentUser, signOut}:Props){
           setRestaurant(result)
         }
       )
-    }, [])
+    }
+    
     if (!restaurant)  return <div>Loading...</div>
     if(currentUser === null) return <div>Loading...</div>
     return(
