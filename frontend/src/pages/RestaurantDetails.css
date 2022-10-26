@@ -9,7 +9,8 @@
     transform: translateY(-60px);
     display: grid;
     grid-auto-flow: column;
-    margin-left: 250px;
+    margin-left: 150px;
+    gap: 100px;
 }
 
 .left-side{
@@ -20,6 +21,7 @@
     background-color: white;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.932);
+    border: 1px solid rgb(252, 247, 247);
 }
 .navigation-links{
     display: flex;
@@ -81,6 +83,16 @@
     gap: 50px;
 }
 
+.description-photos-map{
+    display: grid;
+    grid-template-columns: repeat(2, 330px);
+    place-content: center;
+}
+.description-photos-map img{
+    width: 320px;
+    border-radius: 20px;
+}
+
 #description-reviews{
     display: grid;
     gap: 30px;
@@ -109,6 +121,11 @@
     padding: 20px;
     background-color: pink;
     clip-path: circle();
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1.4rem;
 }
 .review-user p{
     font-size: 1.05rem;
@@ -132,18 +149,25 @@
 /* right side */
 
 .right-side{
+    border: 1px solid rgb(252, 247, 247);
     width: 70%;
     padding: 15px 20px;
-    display: grid;
-    gap: 50px;
     background-color: white;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.952);
+    background-color: rgba(255, 255, 255, 0.877);
+}
+.right-side-container{
+    display: grid;
+    gap: 30px;
 }
 
 .date-and-time{
     display: flex;
     justify-content: space-between;
+}
+
+.right-side-reservation h2{
+    justify-self: center;
 }
 
 .right-side-reservation label{
@@ -176,4 +200,39 @@
     font-weight: bold;
     border: none;
     border-radius: 10px;
+}
+
+.right-side-additional{
+    display: grid;
+    gap: 10px;
+}
+
+.right-side-additional-item{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: start;
+    font-size: 1.4rem;
+}
+
+.right-side-additional-item div{
+    display: grid;
+    gap: 5px;
+}
+
+.right-side-additional-item div p {
+    font-size: 1rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(56, 55, 55)
+}
+
+.p-item{
+    font-size: 1rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(24, 23, 23);
+    font-weight: bold;
+}
+
+.last-item .dev{
+    font-size: 2.1rem;
 }

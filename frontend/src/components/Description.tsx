@@ -2,8 +2,14 @@ import React from "react";
 import { MdFoodBank, MdOutlineModeComment, MdReviews } from "react-icons/md";
 import restaurantImage from "../assets/restaurant-photo.jpg";
 import { Restaurant, User } from "../utils/types";
-import { AiFillStar } from "react-icons/ai";
-import { Markup } from "interweave";
+import { AiFillStar, AiOutlineClockCircle, AiOutlineTag } from "react-icons/ai";
+import {SiDevdotto} from "react-icons/si";
+import {BiBuildings} from "react-icons/bi";
+import {ImSpoonKnife} from "react-icons/im";
+import {TfiBell} from "react-icons/tfi";
+import {GiTravelDress} from "react-icons/gi";
+import {RiParkingBoxLine} from "react-icons/ri";
+import {MdPayment} from "react-icons/md";
 
 type Props = {
   restaurant: Restaurant;
@@ -76,12 +82,13 @@ function Description({ restaurant, currentUser }: Props) {
               </h2>
               <div className="description-photos-map">
                 {restaurant.images.map((image) => (
-                  <img
-                    key={image.id}
-                    src={image.url}
-                    alt="restaurant"
-                    width={400}
-                  />
+                  <div>
+                    <img
+                      key={image.id}
+                      src={image.url}
+                      alt="restaurant"
+                    />
+                  </div>
                 ))}
               </div>
             </div>
@@ -157,10 +164,65 @@ function Description({ restaurant, currentUser }: Props) {
                 />
               </div>
             ) : null}
-          </div>
-          <div className="right-side-additional">
+            <div className="right-side-additional">
               <h2>Additional information</h2>
-              
+              <div className="right-side-additional-item">
+                <BiBuildings />
+                <div>
+                  <span className="p-item">Neighborhood</span>
+                  <p>{restaurant.address}</p>
+                </div>
+              </div>
+              <div className="right-side-additional-item">
+                <AiOutlineClockCircle />
+                <div>
+                  <span className="p-item">Hours of operation</span>
+                  <p>{restaurant.workHours}</p>
+                </div>
+              </div>
+              <div className="right-side-additional-item">
+                <ImSpoonKnife />
+                <div>
+                  <span className="p-item">Cuisines</span>
+                  <p>{restaurant.cuisineInfo}</p>
+                </div>
+              </div>
+              <div className="right-side-additional-item">
+                <TfiBell />
+                <div>
+                  <span className="p-item">Dining style</span>
+                  <p>{restaurant.diningStyle}</p>
+                </div>
+              </div>
+              <div className="right-side-additional-item">
+                <GiTravelDress />
+                <div>
+                  <span className="p-item">Dress code</span>
+                  <p>{restaurant.dressCode}</p>
+                </div>
+              </div>
+              <div className="right-side-additional-item">
+                <RiParkingBoxLine />
+                <div>
+                  <span className="p-item">Parking details</span>
+                  <p>None</p>
+                </div>
+              </div>
+              <div className="right-side-additional-item">
+                <MdPayment />
+                <div>
+                  <span className="p-item">Payment options</span>
+                  <p>{restaurant.priceInfo}</p>
+                </div>
+              </div>
+              <div className="right-side-additional-item last-item">
+                <AiOutlineTag className="dev" />
+                <div>
+                  <span className="p-item">Additionals</span>
+                  <p>{restaurant.additional}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </aside>
       </div>
