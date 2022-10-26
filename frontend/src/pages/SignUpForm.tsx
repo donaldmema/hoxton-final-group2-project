@@ -6,10 +6,12 @@ import Header from "../components/Header";
 import "./SignUpForm.css";
 
 type Props = {
+  currentUser: any;
+    signOut: () => void;
   signIn: (data: { user: any; token: string }) => void;
 };
 
-export function SignUpForm({ signIn }: Props) {
+export function SignUpForm({ signIn, currentUser, signOut}: Props) {
   const navigate = useNavigate();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -27,7 +29,7 @@ export function SignUpForm({ signIn }: Props) {
         } else {
           //sign them in
           signIn(data);
-          navigate("/select-community");
+          navigate("/logedin");
         }
       });
     }
@@ -36,7 +38,7 @@ export function SignUpForm({ signIn }: Props) {
   return (
     <>
       <Bussines />
-      <Header />
+      <Header currentUser={currentUser} signOut={signOut} />
       <div className="signup-page">
         <JoinUs />
         <div className="sign-up-form-container">

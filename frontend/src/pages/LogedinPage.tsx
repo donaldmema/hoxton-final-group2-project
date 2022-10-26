@@ -6,11 +6,16 @@ import { Restaurants } from '../components/Restaurants'
 import { Search } from '../components/Search'
 import "./LogedinPage.css";
 
-function LogedinPage() {
+type Props = {
+  currentUser: any;
+  signOut: () => void;
+};
+function LogedinPage({currentUser, signOut}:Props
+  ) {
   return (
     <div>
       <Bussines/>
-      <Header/>
+      <Header currentUser={currentUser} signOut={signOut}/>
       <Search />
       <Reservations/>
       <Restaurants/>

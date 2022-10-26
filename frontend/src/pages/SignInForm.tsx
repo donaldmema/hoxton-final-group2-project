@@ -4,11 +4,13 @@ import { Bussines } from "../components/Bussines";
 import Header from "../components/Header";
 import "./SignInForm.css";
 
+
 type Props = {
+  currentUser: any;
+    signOut: () => void;
   signIn: (data: { user: any; token: string }) => void;
 };
-
-export function SignInForm({ signIn }: Props) {
+export function SignInForm({ signIn, currentUser, signOut }: Props) {
   const navigate = useNavigate();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -34,7 +36,7 @@ export function SignInForm({ signIn }: Props) {
   return (
     <>
       <Bussines />
-      <Header />
+      <Header currentUser={currentUser} signOut={signOut}/>
       <div className="fun-section">
         <h2>We will continue to make this journey unforgettable for you!</h2>
       </div>

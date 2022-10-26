@@ -1,11 +1,15 @@
 import { Bussines } from "../components/Bussines";
 import Header from "../components/Header";
 
-export function ProfilePage(){
+type Props = {
+    currentUser: any;
+    signOut: () => void;
+  };
+export function ProfilePage({currentUser, signOut}:Props){
     return(
         <>
         <Bussines/>
-        <Header/>
+        <Header currentUser={currentUser} signOut={signOut}/>
         </>
     )
 }
