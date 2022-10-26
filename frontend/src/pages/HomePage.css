@@ -26,6 +26,10 @@ button {
   border: thin solid rgba(220, 220, 220, 0.548);
   border-radius: 5px;
 }
+.header-btn button:hover{
+  background-color: #257f9fe2;
+
+}
 .header-btn a {
   color: white;
 }
