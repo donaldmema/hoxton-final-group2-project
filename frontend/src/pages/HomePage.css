@@ -77,6 +77,10 @@ li {
 .search-form button {
   width: 130px;
   height: 50px;
+  border-radius: 5px;
+}
+.search-form button:hover {
+  background-color: #c42934;
 }
 .search-table {
   display: grid;
