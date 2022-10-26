@@ -1,3 +1,7 @@
+.main{
+    width: 100vw;
+}
+
 .main-image{
     height: 50vh;
     background: url("../assets/restaurant-photo.jpg");
@@ -10,11 +14,12 @@
     display: grid;
     grid-auto-flow: column;
     margin-left: 150px;
+    margin-right: 150px;
     gap: 100px;
 }
 
 .left-side{
-    width: 800px;
+    width: 80%;
     padding: 20px;
     display: grid;
     gap: 50px;
@@ -116,6 +121,7 @@
 .review-user{
     display: grid;
     gap: 5px;
+    justify-items: center;
 }
 .review-user-img{
     padding: 20px;
@@ -150,7 +156,7 @@
 
 .right-side{
     border: 1px solid rgb(252, 247, 247);
-    width: 500px;
+    width: 80%;
     padding: 15px 20px;
     background-color: white;
     border-radius: 10px;
