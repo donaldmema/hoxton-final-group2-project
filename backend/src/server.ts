@@ -192,7 +192,7 @@ app.get("/restaurants/:id/menu", async (req, res) => {
 app.get("/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany({
-      include: { Reviews: true, reservations: true },
+      include: { reviews: true, reservations: true },
     });
     res.send(users);
   } catch (error) {
@@ -206,7 +206,7 @@ app.get("/users/:id", async (req, res) => {
     const { id } = req.params;
     const user = await prisma.user.findUnique({
       where: { id: Number(id) },
-      include: { Reviews: true, reservations: true },
+      include: { reviews: true, reservations: true },
     });
     res.send(user);
   } catch (error) {

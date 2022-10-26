@@ -44,14 +44,14 @@ export function Restaurants() {
                     {restaurant.city}
                   </p>
                 </Link>
-                <button
-                  onClick={() => {
-                    setSeeAvailableDates(true);
-                  }}
-                >
-                  Find next available
-                </button>
               </div>
+              <button
+                onClick={() => {
+                  setSeeAvailableDates(true);
+                }}
+              >
+                Find next available
+              </button>
             </div>
             {seeAvailableDates ? (
               <FindNextAvailable setSeeAvailableDates={setSeeAvailableDates} />
