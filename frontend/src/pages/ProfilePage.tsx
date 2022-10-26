@@ -17,6 +17,13 @@ export function ProfilePage({currentUser, signOut}:Props){
     const [users, setUsers] = React.useState<User[]>([]);
     const params = useParams()
   
+    
+    React.useEffect(() => {
+      fetch(`http://localhost:3005/users`)
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
+    }, []);
+    
     useEffect(() => {
       fetch(`http://localhost:3005/users/${currentUser?.id}/restaurant`)
       .then(res => res.json())
@@ -26,13 +33,6 @@ export function ProfilePage({currentUser, signOut}:Props){
         }
       )
     }, [])
-
-    React.useEffect(() => {
-        fetch(`http://localhost:3005/users`)
-          .then((response) => response.json())
-          .then((data) => setUsers(data));
-      }, []);
-  
     if (!restaurant)  return <div>Loading...</div>
     if(currentUser === null) return <div>Loading...</div>
     return(
@@ -66,7 +66,7 @@ export function ProfilePage({currentUser, signOut}:Props){
                     <div className="icons-row ">
                       <MdOutlineModeComment />
                       <span>
-                        {restaurant.reviews.length}{" "}
+                        {restaurant.reviews.length}
                         {restaurant.reviews.length === 1 ? "Review" : "Reviews"}
                       </span>
                     </div>
