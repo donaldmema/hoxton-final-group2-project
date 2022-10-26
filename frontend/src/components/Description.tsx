@@ -9,6 +9,11 @@ type Props = {
 
 function Description( {restaurant}: Props) {
     const [readMore, setReadMore] = React.useState(true);
+    const [user, setUser] = React.useState<User | null>(null);
+
+    React.useEffect(() => {
+        fetch(`http://localhost:3005/users/${restaurant.user.id}`)
+    }, [])
 
   return (
     <main className="main">

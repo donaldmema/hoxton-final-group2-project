@@ -201,6 +201,20 @@ app.get("/users", async (req, res) => {
   }
 })
 
+app.get("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await prisma.user.findUnique({
+      where: { id: Number(id) },
+      include: { Reviews: true, reservations: true },
+    });
+    res.send(user);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+})
+
 //This endpoint will get all reservations for a user by id
 app.get("/users/:id/reservations", async (req, res) => {
   try {
