@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="home-page-header">
       <li className="logo">
-        <img src={logo} width="200px" alt="indeed-logo" />
+       <a href="/homepage"> <img src={logo} width="200px" alt="indeed-logo" /> </a>
       </li>
       <ul className="header-btn">
         <li className="signup">

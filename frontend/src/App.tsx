@@ -7,6 +7,7 @@ import RestaurantDetails from "./pages/RestaurantDetails";
 import LogedinPage from "./pages/LogedinPage";
 import { SignInForm } from "./pages/SignInForm";
 import { SignUpForm } from "./pages/SignUpForm";
+import { SelectRolePage } from "./pages/SelectRolePage";
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path="/logedin" element={<LogedinPage />} />
         <Route path="/signin" element={<SignInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/select-role" element={<SelectRolePage />} />
         <Route path="/restaurants" element={<RestaurantDetails/>} />
         <Route path="/restaurants/:id" element={<RestaurantDetails />} />
       </Routes>
