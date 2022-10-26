@@ -158,8 +158,9 @@ function Description({ restaurant, currentUser }: Props) {
               </div>
             ) : null}
           </div>
-          <div>
-            
+          <div className="right-side-additional">
+              <h2>Additional information</h2>
+              
           </div>
         </aside>
       </div>
