@@ -5,10 +5,9 @@ import RestaurantDetails from "./pages/RestaurantDetails";
 import LogedinPage from "./pages/LogedinPage";
 import { SignInForm } from "./pages/SignInForm";
 import { SignUpForm } from "./pages/SignUpForm";
-
+import { PageNotFound } from "./pages/PageNotFound";
 
 function App() {
-  
   return (
     <div className="App">
       <Routes>
@@ -17,9 +16,9 @@ function App() {
         <Route path="/logedin" element={<LogedinPage />} />
         <Route path="/signin" element={<SignInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
-
-        <Route path="/restaurants" element={<RestaurantDetails/>} />
+        <Route path="/restaurants" element={<RestaurantDetails />} />
         <Route path="/restaurants/:id" element={<RestaurantDetails />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
