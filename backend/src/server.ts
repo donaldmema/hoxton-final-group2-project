@@ -159,7 +159,58 @@ app.get("/restaurants/:id/reviews", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+//This end point creates a review!!...
+app.post("/user/reviews", async (req, res) => {
+  try {
 
+    const token = req.headers.authorization;
+    if (!token) {
+      res.status(400).send({ error: ["Token not provided"] });
+      return;
+    }
+    const user = await getCurrentUser(token);
+    if (!user) {
+      res.status(404).send({ error: ["User not found"] });
+      return;
+    }
+    let data = {
+      review: req.body.review,
+      rating: req.body.rating,
+      restaurantId: req.body.restaurantId,
+      userId: user.id,
+    };
+    let errors: string[] = [];
+    if (typeof data.review !== "string") {
+      errors.push("Review not provided or not a string");
+    }
+    if (typeof data.rating !== "number") {
+      errors.push("Rating not provided or not a number");
+    }
+    if (typeof data.restaurantId !== "number") {
+      errors.push("Restaurnat id not provided or not a number");
+    }
+    if (typeof data.userId !== "number") {
+      errors.push("User id not provided or not a number");
+    }
+    if (errors.length === 0) {
+      const review = await prisma.review.create({
+        data: {
+          rating: data.rating,
+          review: data.review,
+          restaurantId: data.restaurantId,
+          userId: data.userId,
+        },
+        include: { user: true },
+      });
+      res.send(review);
+    } else {
+      res.status(400).send({errors})
+    }
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).send({errors:[error.message]})
+  }
+});
 //This endpoint will get all the reservations for a restaurant by id
 app.get("/restaurants/:id/reservations", async (req, res) => {
   try {
@@ -213,7 +264,7 @@ app.get("/users", async (req, res) => {
     // @ts-ignore
     res.status(500).send({ error: error.message });
   }
-})
+});
 
 app.get("/users/:id", async (req, res) => {
   try {
@@ -227,7 +278,7 @@ app.get("/users/:id", async (req, res) => {
     // @ts-ignore
     res.status(500).send({ error: error.message });
   }
-})
+});
 
 //This endpoint will get all reservations for a user by id
 app.get("/users/:id/reservations", async (req, res) => {
