@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Bussines } from "../components/Bussines";
 import Header from "../components/Header";
 
-import { Restaurant, User } from "../utils/types";
+import { Reservation, Restaurant, User } from "../utils/types";
 
 type Props = {
     currentUser: User| null;
@@ -15,6 +15,7 @@ export function ProfilePage({currentUser, signOut}:Props){
     const [restaurant, setRestaurant] = React.useState<Restaurant | null>(null)
     const [readMore, setReadMore] = React.useState(true);
     const [users, setUsers] = React.useState<User[]>([]);
+    const [reservations, setReservations] = React.useState<Reservation[]>([]);
     const params = useParams()
   
     
@@ -23,7 +24,14 @@ export function ProfilePage({currentUser, signOut}:Props){
       .then((response) => response.json())
       .then((data) => setUsers(data));
     }, []);
-    
+
+    useEffect(() => {
+        fetch(`http://localhost:3005/restaurants/${params.id}/reservations`)
+        .then((resp) => resp.json())
+        .then((reservationsFromServer) => setReservations(reservationsFromServer));
+    });
+
+
     if (currentUser && !restaurant) {
       fetch(`http://localhost:3005/users/${currentUser?.id}/restaurant`)
       .then(res => res.json())
@@ -40,10 +48,12 @@ export function ProfilePage({currentUser, signOut}:Props){
           <>
           <Bussines/>
           <Header currentUser={currentUser} signOut={signOut}/>
-          <div>
+          <div className="user-profile">
             <div className="profile-image">{currentUser.name.charAt(0)}</div>
+            <div className="user-profile-name">
             <h1>Manager: {currentUser.name}</h1>
             <p>{currentUser.email}</p>
+            </div>
           </div>
           <main className="main">
           <div className="main-image"></div>
@@ -149,38 +159,17 @@ export function ProfilePage({currentUser, signOut}:Props){
             </aside>
             <aside className="right-side">
               <div className="right-side-container">
-                <form className="right-side-reservation">
-                  <h2>Make a reservation</h2>
-                  <label>
-                    Party Size{" "}
-                    <select name="party-size" id="party-size">
-                      {Array(20)
-                        .fill(0)
-                        .map((_, index) => (
-                          <option key={index} value={index + 1}>
-                            {index + 1} {index === 0 ? "person" : "people"}
-                          </option>
-                        ))}
-                    </select>
-                  </label>
-                  <div className="date-and-time">
-                    <label>
-                      Date <input type="date" name="date" />
-                    </label>
-                    <label>
-                      Time <input type="time" name="time" />
-                    </label>
+                <form className="reservations-feed">
+                  <h2>Reservations</h2>
+                  <div className="reservations">
+                    {restaurant.reservations.map(reservation =>(
+                        <>
+                        <h2 className="h2-reservation">{reservation.time}</h2>
+                        </>
+                    ))}
                   </div>
-                  <button type="submit">Find a time</button>
+                  <button>Delete</button>
                 </form>
-                {restaurant.iFrame ? (
-                  <div className="right-side-map">
-                    <div
-                      className="the-map"
-                      dangerouslySetInnerHTML={{ __html: restaurant.iFrame }}
-                    />
-                  </div>
-                ) : null}
               </div>
               <div>
                 
