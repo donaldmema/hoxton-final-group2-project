@@ -188,16 +188,20 @@
   background-color: rgba(0, 0, 0, 0.101);
   padding: 1rem;
   display: grid;
-  place-content: center;
+  justify-content:unset;
 }
 .available-dates-modal__container {
-  position: relative;
+  /* position: absolute;
+  top:15vh;
+  left: 30vw; */
   background-color: white;
   padding: 1rem;
   display: grid;
   grid-auto-flow: row;
-
   width: 500px;
+  justify-self: center;
+  align-self:flex-start;
+  margin-top: 300px;
 }
 .modal__top {
   display: grid;
