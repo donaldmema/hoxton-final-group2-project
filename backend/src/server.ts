@@ -189,6 +189,32 @@ app.get("/restaurants/:id/menu", async (req, res) => {
   }
 });
 
+app.get("/users", async (req, res) => {
+  try {
+    const users = await prisma.user.findMany({
+      include: { Reviews: true, reservations: true },
+    });
+    res.send(users);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+})
+
+app.get("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await prisma.user.findUnique({
+      where: { id: Number(id) },
+      include: { Reviews: true, reservations: true },
+    });
+    res.send(user);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+})
+
 //This endpoint will get all reservations for a user by id
 app.get("/users/:id/reservations", async (req, res) => {
   try {

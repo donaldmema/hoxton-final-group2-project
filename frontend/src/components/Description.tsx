@@ -1,7 +1,8 @@
 import React from "react";
-import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
+import { MdFoodBank, MdOutlineModeComment, MdReviews } from "react-icons/md";
 import restaurantImage from "../assets/restaurant-photo.jpg";
-import { Restaurant } from "../utils/types";
+import { Restaurant, User } from "../utils/types";
+import {AiFillStar} from 'react-icons/ai'
 
 type Props = {
     restaurant: Restaurant
@@ -9,6 +10,13 @@ type Props = {
 
 function Description( {restaurant}: Props) {
     const [readMore, setReadMore] = React.useState(true);
+    const [users, setUsers] = React.useState<User[]>([]);
+
+    React.useEffect(() => {
+        fetch(`http://localhost:3005/users`)
+            .then((response) => response.json())
+            .then((data) => setUsers(data));
+    }, [])
 
   return (
     <main className="main">
@@ -47,6 +55,26 @@ function Description( {restaurant}: Props) {
             </div>
             <div id="description-reviews">
               <h2>What {restaurant.reviews.length} {restaurant.reviews.length === 1 ? "person is saying" : "people are saying"}</h2>
+              <div>
+                {restaurant.reviews.map((review) => (
+                  <div key={review.id} className="review">
+                    <div className="review-user">
+                      {users.map((user) => (
+                        <>
+                          <div>{user.id === review.userId ? user.name.charAt(0) : null}</div>
+                          <p>{user.name}</p>
+                          <p>{user.reviews.length} {user.reviews.length === 1 ? "review" : "reviews"}</p>
+                        </>
+                      ))}
+                    </div>
+                    <div>
+                      <div>
+                          {Array(review.rating).fill(<AiFillStar className="review-stars" />)}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         </aside>
