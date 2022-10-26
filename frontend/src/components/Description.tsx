@@ -1,7 +1,8 @@
 import React from "react";
-import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
+import { MdFoodBank, MdOutlineModeComment, MdReviews } from "react-icons/md";
 import restaurantImage from "../assets/restaurant-photo.jpg";
 import { Restaurant, User } from "../utils/types";
+import {AiFillStar} from 'react-icons/ai'
 
 type Props = {
     restaurant: Restaurant
@@ -9,10 +10,12 @@ type Props = {
 
 function Description( {restaurant}: Props) {
     const [readMore, setReadMore] = React.useState(true);
-    const [user, setUser] = React.useState<User | null>(null);
+    const [users, setUsers] = React.useState<User[]>([]);
 
     React.useEffect(() => {
-        fetch(`http://localhost:3005/users/${restaurant.user.id}`)
+        fetch(`http://localhost:3005/users`)
+            .then((response) => response.json())
+            .then((data) => setUsers(data));
     }, [])
 
   return (
@@ -56,7 +59,18 @@ function Description( {restaurant}: Props) {
                 {restaurant.reviews.map((review) => (
                   <div key={review.id} className="review">
                     <div className="review-user">
-                      {review.}
+                      {users.map((user) => (
+                        <>
+                          <div>{user.id === review.userId ? user.name.charAt(0) : null}</div>
+                          <p>{user.name}</p>
+                          <p>{user.reviews.length} {user.reviews.length === 1 ? "review" : "reviews"}</p>
+                        </>
+                      ))}
+                    </div>
+                    <div>
+                      <div>
+                          {Array(review.rating).fill(<AiFillStar className="review-stars" />)}
+                      </div>
                     </div>
                   </div>
                 ))}
