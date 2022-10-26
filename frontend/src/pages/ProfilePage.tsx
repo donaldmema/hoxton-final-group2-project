@@ -3,13 +3,12 @@ import { AiFillStar } from "react-icons/ai";
 import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { Bussines } from "../components/Bussines";
-import Description from "../components/Description";
 import Header from "../components/Header";
-import { Restaurants } from "../components/Restaurants";
+
 import { Restaurant, User } from "../utils/types";
 
 type Props = {
-    currentUser: any;
+    currentUser: User| null;
     signOut: () => void;
   };
 export function ProfilePage({currentUser, signOut}:Props){
@@ -18,25 +17,25 @@ export function ProfilePage({currentUser, signOut}:Props){
     const [users, setUsers] = React.useState<User[]>([]);
     const params = useParams()
   
-    useEffect(() => {
-      fetch(`http://localhost:3005/users/${currentUser.id}/restaurant`)
+    
+    React.useEffect(() => {
+      fetch(`http://localhost:3005/users`)
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
+    }, []);
+    
+    if (currentUser && !restaurant) {
+      fetch(`http://localhost:3005/users/${currentUser?.id}/restaurant`)
       .then(res => res.json())
       .then(
         (result) => {
           setRestaurant(result)
         }
       )
-    }, [])
-
-    React.useEffect(() => {
-        fetch(`http://localhost:3005/users`)
-          .then((response) => response.json())
-          .then((data) => setUsers(data));
-      }, []);
-  
-    if (!restaurant) {
-      return <div>Loading...</div>
     }
+    
+    if (!restaurant)  return <div>Loading...</div>
+    if(currentUser === null) return <div>Loading...</div>
     return(
           <>
           <Bussines/>
@@ -68,7 +67,7 @@ export function ProfilePage({currentUser, signOut}:Props){
                     <div className="icons-row ">
                       <MdOutlineModeComment />
                       <span>
-                        {restaurant.reviews.length}{" "}
+                        {restaurant.reviews.length}
                         {restaurant.reviews.length === 1 ? "Review" : "Reviews"}
                       </span>
                     </div>
