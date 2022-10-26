@@ -4,14 +4,22 @@
     background-size: 100%;
     background-position: 100%;
 }
-.left-side{
+
+.main-content{
     transform: translateY(-60px);
-    margin-left: 150px;
-    padding: 15px;
+    display: grid;
+    grid-auto-flow: column;
+    margin-left: 250px;
+}
+
+.left-side{
+    width: 800px;
+    padding: 20px;
     display: grid;
     gap: 50px;
     background-color: white;
     border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.932);
 }
 .navigation-links{
     display: flex;
@@ -26,6 +34,7 @@
     color: red;
     border-bottom: 2px solid red;
     padding: 10px 0px;
+    cursor: pointer;
 }
 
 /* description */
@@ -76,11 +85,16 @@
     color: crimson;
     font-size: 1.1rem;
 }
+.reviews{
+    display: grid;
+    gap: 20px;
+}
 
 .review{
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 20px;
+    align-items: center;
 }
 .review-user{
     display: grid;
@@ -94,6 +108,67 @@
 .review-user p{
     font-size: 1.05rem;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+}
+.review-user-reviews{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: large;
+}
+.review-rating{
+    display: grid;
+    gap: 20px;
+}
+.review-rating p {
+    font-size: 1.4rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+/* right side */
+
+.right-side{
+    width: 70%;
+    padding: 15px 20px;
+    display: grid;
+    gap: 50px;
+    background-color: white;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.952);
+}
+
+.date-and-time{
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-side-reservation label{
+    display: grid;
+    gap: 5px;
+}
+.right-side-reservation label select {
+    height: 30px;
+}
+
+.right-side-map{
+    padding-top: 50px;
+    display: grid;
+    gap: 30px;
+}
+.the-map iframe{
+    width: 400px;
+    height: 200px;
+}
+
+.right-side-reservation{
+    display: grid;
+    gap: 20px;
+}
+.right-side-reservation button{
+    height: 50px;
+    color: white;
+    background-color: crimson;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+}

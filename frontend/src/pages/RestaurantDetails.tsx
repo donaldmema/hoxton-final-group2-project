@@ -34,7 +34,7 @@ function RestaurantDetails({currentUser, signOut}:Props) {
     <>
       <Bussines />
       <Header currentUser={currentUser} signOut={signOut}/> 
-      <Description restaurant={restaurant} />
+      <Description currentUser={currentUser} restaurant={restaurant} />
     </>
   )
 }
