@@ -60,7 +60,7 @@ function Description( {restaurant}: Props) {
                 restaurant.reviews.filter(review => user.id === review.userId).map((review) => (
                   <div key={review.id} className="review">
                     <div className="review-user">
-                          <div>{user.name.charAt(0)}</div>
+                          <div className="review-user-img">{user.name.charAt(0).toUpperCase()}</div>
                           <p>{user.name}</p>
                           <div>
                             <MdOutlineModeComment />
