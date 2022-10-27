@@ -96,6 +96,7 @@ function Description({ restaurant, currentUser }: Props) {
                   : "people are saying"}
               </h2>
               <form
+                className="review-form"
                 onSubmit={(e) => {
                   e.preventDefault();
                   fetch(`http://localhost:3005/user/reviews`, {
@@ -120,20 +121,27 @@ function Description({ restaurant, currentUser }: Props) {
                     });
                 }}
               >
-                <select name="rating" id="">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <textarea
-                  name="content"
-                  id="text"
-                  placeholder="Your Review?"
-                  required
-                  rows={5}
-                ></textarea>
+                <label> Rating
+                  <select name="rating" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </label>
+                
+                <label>
+                  Review
+                  <textarea
+                    name="content"
+                    id="text"
+                    placeholder="Your Review?"
+                    required
+                    rows={5}
+                  >
+                  </textarea>
+                </label>
                 <button>POST</button>
               </form>
               <div className="reviews">
