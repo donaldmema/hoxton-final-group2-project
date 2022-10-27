@@ -121,6 +121,7 @@ function Description({ restaurant, currentUser }: Props) {
                     });
                 }}
               >
+                <h2>Leave a Review</h2>
                 <label> Rating
                   <select name="rating" id="">
                     <option value="1">1</option>
