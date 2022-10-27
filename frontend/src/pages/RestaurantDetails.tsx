@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Bussines } from "../components/Bussines";
 import Description from "../components/Description";
 import Header from "../components/Header";
@@ -16,6 +16,7 @@ function RestaurantDetails({ currentUser, signOut }: Props) {
   const [restaurant, setRestaurant] = React.useState<Restaurant | null>(null);
 
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setInterval(() => {
@@ -29,6 +30,10 @@ function RestaurantDetails({ currentUser, signOut }: Props) {
 
   if (!restaurant) {
     return <div>Loading...</div>;
+  }
+
+  if (!currentUser) {
+    navigate("/signin");
   }
 
   return (

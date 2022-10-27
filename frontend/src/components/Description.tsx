@@ -34,9 +34,9 @@ function Description({ restaurant, currentUser }: Props) {
     //date should be in this format: 28/10/2022
     // const date = (event.currentTarget.date.value as string).split("-").reverse().join("/");
     //time should be in this format: 5:30 PM
-
-    const formData = new FormData(event.currentTarget);
+    //@ts-ignore
     const date = event.target.date.value;
+    //@ts-ignore
     const time = event.target.time.value;
 
     let finalDate = date.split("-").reverse().join("/");
@@ -47,18 +47,32 @@ function Description({ restaurant, currentUser }: Props) {
           "This time is already reserved. Please pick a different time."
         );
         return;
-      } else {
-        const reservation = {
-          date: finalDate,
-          time: time,
-          restaurantId: restaurant.id,
-          // userId: currentUser?.id,
-        };
-
-        console.log(reservation);
-        toast.success("Reservation made successfully!");
       }
     }
+    const reservation = {
+      date: finalDate,
+      time: time,
+      restaurantId: restaurant.id,
+      userId: currentUser!.id,
+    };
+
+    fetch(
+      `http://localhost:3005/reservation/${reservation.userId}/${reservation.restaurantId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reservation),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        toast.success("Reservation successful!");
+      });
+
+    console.log(reservation);
+    toast.success("Reservation made successfully!");
   }
 
   return (
