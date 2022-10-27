@@ -342,6 +342,28 @@ app.get("/restaurants/name/:name", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+
+//This endpoint will get all restaurants that are located in a city or have a certain name or cuisine
+app.get("/restaurants/search/:searchTerm", async (req, res) => {
+  try {
+    const { searchTerm } = req.params;
+    const restaurants = await prisma.restaurant.findMany({
+      where: {
+        OR: [
+          { city: { contains: searchTerm } },
+          { name: { contains: searchTerm } },
+          { cuisineInfo: { contains: searchTerm } },
+        ],
+      },
+      include: { reviews: true, reservations: true },
+    });
+    res.send(restaurants);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
 //This endpoint deletes a reservation by id
 app.delete("/reservation/:id", async (req, res) => {
   try {

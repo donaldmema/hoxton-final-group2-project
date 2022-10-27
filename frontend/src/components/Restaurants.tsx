@@ -5,20 +5,12 @@ import stars from "../assets/stars.png";
 import { Restaurant } from "../utils/types";
 import { FindNextAvailable } from "./FindNextAvailable";
 
-export function Restaurants() {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+type Props = {
+  restaurants: Restaurant[];
+};
+
+export function Restaurants({ restaurants }: Props) {
   const [seeAvailableDates, setSeeAvailableDates] = useState(false);
-  useEffect(() => {
-    fetch("http://localhost:3005/restaurants")
-      .then((rsp) => rsp.json())
-      .then((data) => {
-        if (data.error) {
-          alert(data.error);
-        } else {
-          setRestaurants(data);
-        }
-      });
-  }, []);
 
   return (
     <>
@@ -26,7 +18,7 @@ export function Restaurants() {
       <div className="restaurants-feed">
         {restaurants.map((restaurant) => (
           <>
-            <div className="restaurant-feed-item">
+            <div key={restaurant.id} className="restaurant-feed-item">
               <Link to={`/restaurants/${restaurant.id}`}>
                 <img src={restaurant.profileImg} width="250px" height="135px" />
               </Link>
