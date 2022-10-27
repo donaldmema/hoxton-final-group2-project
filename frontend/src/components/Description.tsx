@@ -95,6 +95,7 @@ function Description({ restaurant, currentUser }: Props) {
                   ? "person is saying"
                   : "people are saying"}
               </h2>
+              {currentUser?.role.toLowerCase() === "user" ? 
               <form
                 className="review-form"
                 onSubmit={(e) => {
@@ -131,7 +132,6 @@ function Description({ restaurant, currentUser }: Props) {
                     <option value="5">5</option>
                   </select>
                 </label>
-                
                 <label>
                   Review
                   <textarea
@@ -145,6 +145,8 @@ function Description({ restaurant, currentUser }: Props) {
                 </label>
                 <button>POST</button>
               </form>
+              :
+              null}
               <div className="reviews">
                 {users.map((user) =>
                   restaurant.reviews
