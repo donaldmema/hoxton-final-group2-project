@@ -24,6 +24,20 @@ export function Search({ setRestaurants }: Props) {
           alert(data.error);
         } else {
           setRestaurants(data);
+          let filteredRestaurants: Restaurant[] = [];
+          filteredRestaurants = data.filter((restaurant: Restaurant) => {
+            return (
+              restaurant.reservations.filter((reservation) => {
+                return (
+                  reservation.date === finalDate &&
+                  reservation.time === searchTime
+                );
+              }).length === 0
+            );
+          });
+          setRestaurants(filteredRestaurants);
+
+          // console.log(filteredRestaurants);
         }
       });
   }
