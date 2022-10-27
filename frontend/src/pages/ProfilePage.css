@@ -27,11 +27,14 @@
     border: none;
     width: 60px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     height: 20px;
     justify-self: flex-end;
   }
   .right-side-reservation{
 =======
+=======
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
     height: 30px;
     justify-self: flex-end;
     background-color: #da3644;
@@ -40,6 +43,9 @@
 
   }
   .right-side-reservationn{
+<<<<<<< HEAD
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
+=======
 >>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
     background-color: rgba(255, 255, 255, 0.879);
     border-radius: 5px;

@@ -156,7 +156,11 @@ export function ProfilePage({ currentUser, signOut }: Props) {
             </section>
           </aside>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <aside className="right-side-reservation">
+=======
+          <aside className="right-side-reservationn">
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
 =======
           <aside className="right-side-reservationn">
 >>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
