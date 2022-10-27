@@ -155,7 +155,7 @@ export function ProfilePage({ currentUser, signOut }: Props) {
               </div>
             </section>
           </aside>
-          <aside className="right-side-reservation">
+          <aside className="right-side-reservationn">
             <div className="right-sidee">
               <form className="reservations-feed">
                 <h2>Reservations</h2>
