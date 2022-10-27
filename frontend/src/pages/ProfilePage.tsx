@@ -25,19 +25,18 @@ export function ProfilePage({currentUser, signOut}:Props){
       .then((data) => setUsers(data));
     }, []);
 
-    useEffect(() => {
-        fetch(`http://localhost:3005/restaurants/${params.id}/reservations`)
-        .then((resp) => resp.json())
-        .then((reservationsFromServer) => setReservations(reservationsFromServer));
-    });
-
-
     if (currentUser && !restaurant) {
       fetch(`http://localhost:3005/users/${currentUser?.id}/restaurant`)
       .then(res => res.json())
       .then(
         (result) => {
           setRestaurant(result)
+
+          useEffect(() => {
+            fetch(`http://localhost:3005/restaurants/${restaurant.id}/reservations`)
+            .then((resp) => resp.json())
+            .then((reservationsFromServer) => setReservations(reservationsFromServer));
+        });
         }
       )
     }
