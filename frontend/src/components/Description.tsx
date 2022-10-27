@@ -145,7 +145,7 @@ function Description({ restaurant, currentUser }: Props) {
                 { restaurant.reviews.length === 0 ? 
                 "No reviews, be the first to review this restaurant!"
                 :
-                `What ${restaurant.reviews.length}{" "}
+                `What ${restaurant.reviews.length}
                 ${restaurant.reviews.length === 1
                   ? "person is saying"
                   : "people are saying"}
