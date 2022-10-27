@@ -32,11 +32,9 @@ export function ProfilePage({currentUser, signOut}:Props){
         (result) => {
           setRestaurant(result)
 
-          useEffect(() => {
-            fetch(`http://localhost:3005/restaurants/${restaurant.id}/reservations`)
+            fetch(`http://localhost:3005/restaurants/${result.id}/reservations`)
             .then((resp) => resp.json())
             .then((reservationsFromServer) => setReservations(reservationsFromServer));
-        });
         }
       )
     }
