@@ -342,6 +342,45 @@ app.get("/restaurants/name/:name", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+//This endpoint deletes a reservation by id
+app.delete("/reservation/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) {
+      res.status(400).send({ errors: ["Id not provided"] });
+      return;
+    }
+    const reservation = await prisma.reservation.delete({ where: { id } });
+    res.send(`Reservation ${reservation.id} deleted succssesfully!`);
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).send({ errors: [error.message] });
+  }
+});
+app.patch("/change-restaurants-name/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) {
+      res.status(400).send({ errors: ["Restaurant id not provided"] });
+      return;
+    }
+    const errors: string[] = [];
+    const name = req.body.name;
+    if (typeof name !== "string") {
+      errors.push("Name not provided or not a string");
+    }
+    const restaurant = await prisma.restaurant.update({
+      where: { id },
+      data: {
+        name,
+      },
+    });
+    res.send(restaurant);
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).send({ errors: [error.message] });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Listening to http://localhost:${port}`);
