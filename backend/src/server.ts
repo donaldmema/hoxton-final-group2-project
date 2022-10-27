@@ -342,6 +342,28 @@ app.get("/restaurants/name/:name", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+
+//This endpoint will get all restaurants that are located in a city or have a certain name or cuisine
+app.get("/restaurants/search/:searchTerm", async (req, res) => {
+  try {
+    const { searchTerm } = req.params;
+    const restaurants = await prisma.restaurant.findMany({
+      where: {
+        OR: [
+          { city: { contains: searchTerm } },
+          { name: { contains: searchTerm } },
+          { cuisineInfo: { contains: searchTerm } },
+        ],
+      },
+      include: { reviews: true, reservations: true },
+    });
+    res.send(restaurants);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
 //This endpoint deletes a reservation by id
 app.delete("/reservation/:id", async (req, res) => {
   try {
@@ -408,6 +430,50 @@ app.post("/image/:restaurantId", async (req, res) => {
         },
       });
       res.send(image);
+    } else {
+      res.status(400).send({ errors });
+    }
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).send({ errors: [error.message] });
+  }
+});
+
+//This endpoint creates a reservation for the specified user and restaurant
+app.post("/reservation/:userId/:restaurantId", async (req, res) => {
+  try {
+    const userId = Number(req.params.userId);
+    const restaurantId = Number(req.params.restaurantId);
+    if (!userId || !restaurantId) {
+      res.status(400).send({ errors: ["User or restaurant not provided"] });
+      return;
+    }
+
+    const errors: string[] = [];
+    const date = req.body.date;
+    if (typeof date !== "string") {
+      errors.push("Date not provided!");
+    }
+    if (date === "") {
+      errors.push("Date not provided!");
+    }
+    const time = req.body.time;
+    if (typeof time !== "string") {
+      errors.push("Time not provided!");
+    }
+    if (time === "") {
+      errors.push("Time not provided!");
+    }
+    if (errors.length === 0) {
+      const reservation = await prisma.reservation.create({
+        data: {
+          userId,
+          restaurantId,
+          date,
+          time,
+        },
+      });
+      res.send(reservation);
     } else {
       res.status(400).send({ errors });
     }

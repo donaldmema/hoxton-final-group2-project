@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Bussines } from "../components/Bussines";
 import Description from "../components/Description";
 import Header from "../components/Header";
@@ -16,6 +16,7 @@ function RestaurantDetails({ currentUser, signOut }: Props) {
   const [restaurant, setRestaurant] = React.useState<Restaurant | null>(null);
 
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setInterval(() => {
@@ -24,19 +25,22 @@ function RestaurantDetails({ currentUser, signOut }: Props) {
         .then((result) => {
           setRestaurant(result);
         });
-
-    }, 1000)
+    }, 1000);
   }, []);
 
   if (!restaurant) {
     return <div>Loading...</div>;
   }
 
+  if (!currentUser) {
+    navigate("/signin");
+  }
+
   return (
     <>
       <Bussines />
       <Header currentUser={currentUser} signOut={signOut} />
-      {currentUser && currentUser.role === "ADMIN" ? (
+      {currentUser && currentUser.role.toLowerCase() === "admin" ? (
         <ProfilePage currentUser={currentUser} signOut={signOut} />
       ) : (
         <Description currentUser={currentUser} restaurant={restaurant} />
