@@ -342,6 +342,80 @@ app.get("/restaurants/name/:name", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+//This endpoint deletes a reservation by id
+app.delete("/reservation/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) {
+      res.status(400).send({ errors: ["Id not provided"] });
+      return;
+    }
+    const reservation = await prisma.reservation.delete({ where: { id } });
+    res.send(`Reservation ${reservation.id} deleted succssesfully!`);
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).send({ errors: [error.message] });
+  }
+});
+//This endpoint  chnages the restaurants name by id
+app.patch("/change-restaurants-name/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) {
+      res.status(400).send({ errors: ["Restaurant id not provided"] });
+      return;
+    }
+    const errors: string[] = [];
+    const name = req.body.name;
+    if (typeof name !== "string") {
+      errors.push("Name not provided or not a string");
+    }
+    if (errors.length === 0) {
+      const restaurant = await prisma.restaurant.update({
+        where: { id },
+        data: {
+          name,
+        },
+      });
+      res.send(restaurant);
+    } else {
+      res.status(400).send({ errors });
+    }
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).send({ errors: [error.message] });
+  }
+});
+//This endpoint creates a new image by restaurant id
+app.post("/image/:restaurantId", async (req, res) => {
+  try {
+    const restaurantId = Number(req.params.restaurantId);
+    if (!restaurantId) {
+      res.status(400).send({ errors: ["Id not provided"] });
+      return;
+    }
+
+    const errors: string[] = [];
+    const url = req.body.url;
+    if (typeof url !== "string") {
+      errors.push("Url not provided or not a string");
+    }
+    if (errors.length === 0) {
+      const image = await prisma.image.create({
+        data: {
+          restaurantId,
+          url: req.body.url,
+        },
+      });
+      res.send(image);
+    } else {
+      res.status(400).send({ errors });
+    }
+  } catch (error) {
+    //@ts-ignore
+    res.status(400).send({ errors: [error.message] });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Listening to http://localhost:${port}`);
