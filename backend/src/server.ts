@@ -303,7 +303,7 @@ app.get("/restaurants/city/:city", async (req, res) => {
   try {
     const { city } = req.params;
     const restaurants = await prisma.restaurant.findMany({
-      where: { city },
+      where: { city: { contains: city } },
       include: { reviews: true, reservations: true },
     });
     res.send(restaurants);
