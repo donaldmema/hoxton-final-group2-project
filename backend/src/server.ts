@@ -32,7 +32,7 @@ async function getCurrentUser(token: string) {
   const user = await prisma.user.findUnique({
     where: { id: decoded },
     // @ts-ignore
-    include: { reviews: true },
+    include: { reviews: true, reservations: true, restaurants: true },
   });
 
   return user;
@@ -77,6 +77,7 @@ app.post("/login", async (req, res) => {
 
     const user = await prisma.user.findUnique({
       where: { email },
+      include: { reviews: true, restaurants: true, reservations: true },
     });
 
     if (!user) {
