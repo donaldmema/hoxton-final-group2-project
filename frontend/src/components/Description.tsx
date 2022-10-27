@@ -61,7 +61,7 @@ function Description({ restaurant, currentUser }: Props) {
               <div className="description-text">
                 <p className="show-more-p">
                   {readMore
-                    ? restaurant.description.slice(0, 20)
+                    ? restaurant.description.slice(0, 30)
                     : restaurant.description}{" "}
                   {readMore ? "..." : null}{" "}
                   <span
