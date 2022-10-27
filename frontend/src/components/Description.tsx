@@ -11,6 +11,9 @@ import { GiTravelDress } from "react-icons/gi";
 import { RiParkingBoxLine } from "react-icons/ri";
 import { MdPayment } from "react-icons/md";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 type Props = {
   restaurant: Restaurant;
   currentUser: User | null;
@@ -25,6 +28,38 @@ function Description({ restaurant, currentUser }: Props) {
       .then((response) => response.json())
       .then((data) => setUsers(data));
   }, []);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    //date should be in this format: 28/10/2022
+    // const date = (event.currentTarget.date.value as string).split("-").reverse().join("/");
+    //time should be in this format: 5:30 PM
+
+    const formData = new FormData(event.currentTarget);
+    const date = event.target.date.value;
+    const time = event.target.time.value;
+
+    let finalDate = date.split("-").reverse().join("/");
+
+    for (let reservation of restaurant.reservations) {
+      if (reservation.date === finalDate && reservation.time === time) {
+        toast.error(
+          "This time is already reserved. Please pick a different time."
+        );
+        return;
+      } else {
+        const reservation = {
+          date: finalDate,
+          time: time,
+          restaurantId: restaurant.id,
+          // userId: currentUser?.id,
+        };
+
+        console.log(reservation);
+        toast.success("Reservation made successfully!");
+      }
+    }
+  }
 
   return (
     <main className="main">
@@ -95,62 +130,63 @@ function Description({ restaurant, currentUser }: Props) {
                   ? "person is saying"
                   : "people are saying"}
               </h2>
-              {currentUser?.role.toLowerCase() === "user" ? 
-              <form
-                className="review-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  fetch(`http://localhost:3005/user/reviews`, {
-                    method: "POST",
-                    headers: {
-                      Authorization: localStorage.token,
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      review: e.target.text.value,
-                      rating: Number(e.target.rating.value),
-                      restaurantId: restaurant.id,
-                    }),
-                  })
-                    .then((rsp) => rsp.json())
-                    .then((data) => {
-                      if (data.errors) {
-                        alert(data.errors);
-                      } else {
-                        restaurant.reviews.push(data);
-                      }
-                    });
-                }}
-              >
-                <h2>Leave a Review</h2>
-                <label> Rating
-                  <select name="rating" id="">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </label>
-                <label>
-                  Review
-                  <textarea
-                    name="content"
-                    id="text"
-                    placeholder="Your Review?"
-                    required
-                    rows={5}
-                  >
-                  </textarea>
-                </label>
-                <button>POST</button>
-              </form>
-              :
-              null}
+              {currentUser?.role.toLowerCase() === "user" ? (
+                <form
+                  className="review-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    fetch(`http://localhost:3005/user/reviews`, {
+                      method: "POST",
+                      headers: {
+                        Authorization: localStorage.token,
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        review: e.target.text.value,
+                        rating: Number(e.target.rating.value),
+                        restaurantId: restaurant.id,
+                      }),
+                    })
+                      .then((rsp) => rsp.json())
+                      .then((data) => {
+                        if (data.errors) {
+                          alert(data.errors);
+                        } else {
+                          restaurant.reviews.push(data);
+                        }
+                      });
+                  }}
+                >
+                  <h2>Leave a Review</h2>
+                  <label>
+                    {" "}
+                    Rating
+                    <select name="rating" id="">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </label>
+                  <label>
+                    Review
+                    <textarea
+                      name="content"
+                      id="text"
+                      placeholder="Your Review?"
+                      required
+                      rows={5}
+                    ></textarea>
+                  </label>
+                  <button>POST</button>
+                </form>
+              ) : null}
               <div className="reviews">
                 {users.map((user) =>
                   restaurant.reviews
-                    .filter((review) => user.id === review.userId).reverse()
+                    .filter((review) => user.id === review.userId)
+                    .reverse()
                     .map((review) => (
                       <div key={review.id} className="review">
                         <div className="review-user">
@@ -183,7 +219,10 @@ function Description({ restaurant, currentUser }: Props) {
         </aside>
         <aside className="right-side">
           <div className="right-side-container">
-            <form className="right-side-reservation">
+            <form
+              className="right-side-reservation"
+              onSubmit={(event) => handleSubmit(event)}
+            >
               <h2>Make a reservation</h2>
               <label>
                 Party Size{" "}
@@ -199,10 +238,26 @@ function Description({ restaurant, currentUser }: Props) {
               </label>
               <div className="date-and-time">
                 <label>
-                  Date <input type="date" name="date" />
+                  Date{" "}
+                  <input
+                    type="date"
+                    name="date"
+                    min={new Date().toISOString().split("T")[0]}
+                    required
+                  />
                 </label>
                 <label>
-                  Time <input type="time" name="time" />
+                  Time
+                  <select id="time" name="time" required>
+                    <option value="5:30 PM">5:30 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="6:30 PM">6:30 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="7:30 PM">7:30 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="8:30 PM">8:30 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
+                  </select>
                 </label>
               </div>
               <button type="submit">Find a time</button>
@@ -277,6 +332,7 @@ function Description({ restaurant, currentUser }: Props) {
           </div>
         </aside>
       </div>
+      <ToastContainer />
     </main>
   );
 }

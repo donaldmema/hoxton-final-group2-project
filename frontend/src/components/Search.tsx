@@ -7,13 +7,14 @@ export function Search() {
       <form className="search-form">
         <input type="date" min={new Date().toISOString().split("T")[0]}></input>
         <select id="time" name="time">
-          <option value="1">2:30 PM</option>
-          <option value="2">3:00 PM</option>
-          <option value="3">3:30 PM</option>
-          <option value="4">4:00 PM</option>
-          <option value="5">4:30 PM</option>
-          <option value="6">5:00 PM</option>
-          <option value="7">5:30 PM</option>
+          <option value="5:30 PM">5:30 PM</option>
+          <option value="6:00 PM">6:00 PM</option>
+          <option value="6:30 PM">6:30 PM</option>
+          <option value="7:00 PM">7:00 PM</option>
+          <option value="7:30 PM">7:30 PM</option>
+          <option value="8:00 PM">8:00 PM</option>
+          <option value="8:30 PM">8:30 PM</option>
+          <option value="9:00 PM">9:00 PM</option>
         </select>
         <select id="people" name="people">
           <option value="1">1 person</option>

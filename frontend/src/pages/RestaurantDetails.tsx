@@ -24,8 +24,7 @@ function RestaurantDetails({ currentUser, signOut }: Props) {
         .then((result) => {
           setRestaurant(result);
         });
-
-    }, 1000)
+    }, 1000);
   }, []);
 
   if (!restaurant) {
@@ -36,7 +35,7 @@ function RestaurantDetails({ currentUser, signOut }: Props) {
     <>
       <Bussines />
       <Header currentUser={currentUser} signOut={signOut} />
-      {currentUser && currentUser.role === "ADMIN" ? (
+      {currentUser && currentUser.role.toLowerCase() === "admin" ? (
         <ProfilePage currentUser={currentUser} signOut={signOut} />
       ) : (
         <Description currentUser={currentUser} restaurant={restaurant} />
