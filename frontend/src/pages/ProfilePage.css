@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .reservations {
   border: thin solid rgba(133, 133, 133, 0.368);
   padding: 15px;
@@ -48,3 +49,76 @@
 .description img {
   margin-top: 10px;
 }
+=======
+.reservations{
+    border: thin solid rgba(133, 133, 133, 0.368);
+    padding: 15px;
+    border-radius: 10px;
+    border: thin solid gainsboro;
+  }
+  .user-profile-name {
+    display: grid;
+    grid-auto-flow: row;
+  }
+  .details{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 150px;
+    margin-bottom: 30px;
+  }
+  .reservation-content{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 100px;
+  }
+  .date-reservation{
+    display: grid;
+    justify-content: end;
+  }
+  .reservation-delete{
+    border: none;
+    width: 60px;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    height: 20px;
+    justify-self: flex-end;
+  }
+  .right-side-reservation{
+=======
+=======
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
+=======
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
+    height: 30px;
+    justify-self: flex-end;
+    background-color: #da3644;
+    color: white;
+    border-radius: 5px;
+
+  }
+  .right-side-reservationn{
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
+=======
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
+=======
+>>>>>>> 0f59a04013f1bca0a4af8dbc49a7fefce0ae7c3c
+    background-color: rgba(255, 255, 255, 0.879);
+    border-radius: 5px;
+    margin-left:-50px;
+  
+  }
+  .reservations-feed h2{
+    align-self: center;
+    color: gray;
+    font-weight: 400;
+    padding-top: 20px;
+    padding-left: 10px;
+    font-size: 20px;
+  }
+ .description img{
+    margin-top: 10px;
+  }
+>>>>>>> 046511d44775b3a4559ab086c0f90434093cca93
