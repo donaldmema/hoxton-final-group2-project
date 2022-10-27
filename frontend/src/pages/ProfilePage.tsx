@@ -71,6 +71,7 @@ export function ProfilePage({ currentUser, signOut }: Props) {
             <section className="description">
               <div id="description-overview">
                 <h1>{restaurant.name}</h1>
+                <button className="addphotos-btn">Change name</button>
                 <div className="icons-container">
                   <div className="icons-row ">
                     <MdOutlineModeComment />
@@ -102,10 +103,13 @@ export function ProfilePage({ currentUser, signOut }: Props) {
                 </div>
               </div>
               <div id="description-photos">
+                <div className="photos-btn">
                 <h2>
                   {restaurant.images.length}{" "}
                   {restaurant.images.length === 1 ? "Photo" : "Photos"}
                 </h2>
+                <button className="addphotos-btn">Add Photos</button>
+                </div>
                 <div className="description-photos-map">
                   {restaurant.images.map((image) => (
                     <img

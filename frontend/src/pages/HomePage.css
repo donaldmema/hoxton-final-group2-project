@@ -356,3 +356,16 @@ a {
   align-items: center;
   gap: 10px;
 }
+.addphotos-btn{
+  width: 100px;
+  height: 30px;
+  border: thin solid #da3644;
+  background-color: transparent;
+  border-radius: 5px;
+}
+.photos-btn{
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  gap: 20px;
+}
