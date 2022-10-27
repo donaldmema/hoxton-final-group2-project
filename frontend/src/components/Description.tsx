@@ -142,10 +142,14 @@ function Description({ restaurant, currentUser }: Props) {
             </div>
             <div id="description-reviews">
               <h2>
-                What {restaurant.reviews.length}{" "}
-                {restaurant.reviews.length === 1
+                { restaurant.reviews.length === 0 ? 
+                "No reviews yet" 
+                :
+                `What ${restaurant.reviews.length}{" "}
+                ${restaurant.reviews.length === 1
                   ? "person is saying"
                   : "people are saying"}
+                `}
               </h2>
               {currentUser?.role.toLowerCase() === "user" ? (
                 <form
