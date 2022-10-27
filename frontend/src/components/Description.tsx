@@ -143,7 +143,7 @@ function Description({ restaurant, currentUser }: Props) {
             <div id="description-reviews">
               <h2>
                 { restaurant.reviews.length === 0 ? 
-                "No reviews yet" 
+                "No reviews, be the first to review this restaurant!"
                 :
                 `What ${restaurant.reviews.length}{" "}
                 ${restaurant.reviews.length === 1
