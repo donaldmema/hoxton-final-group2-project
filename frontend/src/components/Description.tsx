@@ -61,7 +61,7 @@ function Description({ restaurant, currentUser }: Props) {
               <div className="description-text">
                 <p className="show-more-p">
                   {readMore
-                    ? restaurant.description.slice(0, 20)
+                    ? restaurant.description.slice(0, 30)
                     : restaurant.description}{" "}
                   {readMore ? "..." : null}{" "}
                   <span
@@ -96,6 +96,7 @@ function Description({ restaurant, currentUser }: Props) {
                   : "people are saying"}
               </h2>
               <form
+                className="review-form"
                 onSubmit={(e) => {
                   e.preventDefault();
                   fetch(`http://localhost:3005/user/reviews`, {
@@ -120,26 +121,34 @@ function Description({ restaurant, currentUser }: Props) {
                     });
                 }}
               >
-                <select name="rating" id="">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <textarea
-                  name="content"
-                  id="text"
-                  placeholder="Your Review?"
-                  required
-                  rows={5}
-                ></textarea>
+                <h2>Leave a Review</h2>
+                <label> Rating
+                  <select name="rating" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </label>
+                
+                <label>
+                  Review
+                  <textarea
+                    name="content"
+                    id="text"
+                    placeholder="Your Review?"
+                    required
+                    rows={5}
+                  >
+                  </textarea>
+                </label>
                 <button>POST</button>
               </form>
               <div className="reviews">
                 {users.map((user) =>
                   restaurant.reviews
-                    .filter((review) => user.id === review.userId)
+                    .filter((review) => user.id === review.userId).reverse()
                     .map((review) => (
                       <div key={review.id} className="review">
                         <div className="review-user">
