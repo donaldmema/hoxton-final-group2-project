@@ -337,3 +337,28 @@ a {
   align-items: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.profile-image{
+  width: fit-content;
+  padding: 17px 22px;
+  border-radius: 30px;
+  font-size: 20px;
+  background-color:#da3644;
+  color: white;
+  font-weight: 800;
+}
+.user-profile{
+  display: grid;
+  grid-auto-flow: column;
+  border-top: thin solid rgba(133, 133, 133, 0.368);
+  margin-left: 50px;
+  margin-right: 50px;
+  padding:20px 0;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-profile-name{
+  display: grid;
+  grid-auto-flow: row;
+}

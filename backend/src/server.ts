@@ -31,6 +31,7 @@ async function getCurrentUser(token: string) {
 
   const user = await prisma.user.findUnique({
     where: { id: decoded },
+    // @ts-ignore
     include: { reviews: true },
   });
 
@@ -245,7 +246,7 @@ app.get("/users/:id/restaurant", async (req, res) => {
     const { id } = req.params;
     const restaurant = await prisma.restaurant.findFirst({
       where: { managerId: Number(id) },
-      include: { reviews: true, reservations: true },
+      include: { reviews: true, reservations: true, images: true },
     });
     res.send(restaurant);
   } catch (error) {
@@ -271,6 +272,7 @@ app.get("/users/:id", async (req, res) => {
     const { id } = req.params;
     const user = await prisma.user.findUnique({
       where: { id: Number(id) },
+      // @ts-ignore
       include: { reviews: true, reservations: true },
     });
     res.send(user);
