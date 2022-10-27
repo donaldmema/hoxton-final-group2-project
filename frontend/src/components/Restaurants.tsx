@@ -26,10 +26,12 @@ export function Restaurants() {
       <div className="restaurants-feed">
         {restaurants.map((restaurant) => (
           <>
-            <Link to={`/restaurants/${restaurant.id}`}>
             <div className="restaurant-feed-item">
-              <img src={restaurant.profileImg} width="250px" height="135px" />
-              <div className="restaurant-content">
+              <Link to={`/restaurants/${restaurant.id}`}>
+                <img src={restaurant.profileImg} width="250px" height="135px" />
+              </Link>
+              <Link to={`/restaurants/${restaurant.id}`}>
+                <div className="restaurant-content">
                   <h3>{restaurant.name}</h3>
                   <div className="rating">
                     <img src={stars} width="100px" height="20px" />{" "}
@@ -39,7 +41,8 @@ export function Restaurants() {
                     {restaurant.cuisineInfo} • {restaurant.priceInfo} •{" "}
                     {restaurant.city}
                   </p>
-              </div>
+                </div>
+              </Link>
               <button
                 onClick={() => {
                   setSeeAvailableDates(true);
@@ -48,7 +51,6 @@ export function Restaurants() {
                 Find next available
               </button>
             </div>
-            </Link>
             {seeAvailableDates ? (
               <FindNextAvailable setSeeAvailableDates={setSeeAvailableDates} />
             ) : null}
