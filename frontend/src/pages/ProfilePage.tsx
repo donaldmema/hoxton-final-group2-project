@@ -16,7 +16,6 @@ export function ProfilePage({ currentUser, signOut }: Props) {
   const [readMore, setReadMore] = React.useState(true);
   const [users, setUsers] = React.useState<User[]>([]);
   const [reservations, setReservations] = React.useState<Reservation[]>([]);
-  const params = useParams();
 
   if (currentUser && !restaurant) {
     fetch(`http://localhost:3005/users/${currentUser.id}/restaurant`)
