@@ -4,10 +4,9 @@ import { Bussines } from "../components/Bussines";
 import Header from "../components/Header";
 import "./SignInForm.css";
 
-
 type Props = {
   currentUser: any;
-    signOut: () => void;
+  signOut: () => void;
   signIn: (data: { user: any; token: string }) => void;
 };
 export function SignInForm({ signIn, currentUser, signOut }: Props) {
@@ -29,10 +28,10 @@ export function SignInForm({ signIn, currentUser, signOut }: Props) {
           signIn(data);
         }
       });
-      if(currentUser.role === "ADMIN"){
+      if (currentUser.role.toLowerCase() === "admin") {
         navigate("/profile");
       } else {
-        navigate("/logedin")
+        navigate("/logedin");
       }
     }
   }
@@ -40,7 +39,7 @@ export function SignInForm({ signIn, currentUser, signOut }: Props) {
   return (
     <>
       <Bussines />
-      <Header currentUser={currentUser} signOut={signOut}/>
+      <Header currentUser={currentUser} signOut={signOut} />
       <div className="fun-section">
         <h2>We will continue to make this journey unforgettable for you!</h2>
       </div>

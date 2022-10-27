@@ -84,6 +84,10 @@
     gap: 50px;
 }
 
+#description-photos h2{
+    color: royalblue;
+}
+
 .description-photos-map{
     display: grid;
     grid-template-columns: repeat(2, 330px);
@@ -97,6 +101,10 @@
 #description-reviews{
     display: grid;
     gap: 30px;
+}
+
+#description-reviews h2{
+    color: royalblue;
 }
 
 .review-stars{
@@ -146,6 +154,35 @@
 .review-rating p {
     font-size: 1.4rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.review-form{
+    width: 400px;
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+}
+
+#description-reviews .review-form h2{
+    color: crimson;
+}
+
+.review-form label{
+    display: grid;
+    gap: 5px;
+}
+.review-form select{
+    height: 30px;
+    width: 300px;
+}
+.review-form button{
+    height: 30px;
+    color: white;
+    background-color: crimson;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
 }
 
 /* right side */
