@@ -148,7 +148,7 @@ function Description({ restaurant, currentUser }: Props) {
               <div className="reviews">
                 {users.map((user) =>
                   restaurant.reviews
-                    .filter((review) => user.id === review.userId)
+                    .filter((review) => user.id === review.userId).reverse()
                     .map((review) => (
                       <div key={review.id} className="review">
                         <div className="review-user">
