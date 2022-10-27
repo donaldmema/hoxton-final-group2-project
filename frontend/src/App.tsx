@@ -27,12 +27,6 @@ function App() {
     localStorage.removeItem("token");
   }
 
-  function getDate(sqlDate: any) {
-    let dateString = sqlDate.toString();
-
-    return dateString;
-  }
-
   useEffect(() => {
     if (localStorage.token) {
       API.validate().then((data) => {
@@ -50,12 +44,44 @@ function App() {
     <div className="App">
       <Routes>
         <Route index element={<Navigate to="/homepage" />} />
-        <Route path="/homepage" element={<HomePage currentUser={currentUser} signOut={signOut} />} />
-        <Route path="/logedin" element={<LogedinPage currentUser={currentUser} signOut={signOut} />} />
-        <Route path="/profile" element={<ProfilePage currentUser={currentUser} signOut={signOut}/>} />
-        <Route path="/signin" element={<SignInForm currentUser={currentUser} signOut={signOut} signIn={signIn} />} />
-        <Route path="/signup" element={<SignUpForm currentUser={currentUser} signOut={signOut} signIn={signIn} />} />
-        <Route path="/restaurants/:id" element={<RestaurantDetails currentUser={currentUser} signOut={signOut}/>} />
+        <Route
+          path="/homepage"
+          element={<HomePage currentUser={currentUser} signOut={signOut} />}
+        />
+        <Route
+          path="/logedin"
+          element={<LogedinPage currentUser={currentUser} signOut={signOut} />}
+        />
+        <Route
+          path="/profile"
+          element={<ProfilePage currentUser={currentUser} signOut={signOut} />}
+        />
+        <Route
+          path="/signin"
+          element={
+            <SignInForm
+              currentUser={currentUser}
+              signOut={signOut}
+              signIn={signIn}
+            />
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <SignUpForm
+              currentUser={currentUser}
+              signOut={signOut}
+              signIn={signIn}
+            />
+          }
+        />
+        <Route
+          path="/restaurants/:id"
+          element={
+            <RestaurantDetails currentUser={currentUser} signOut={signOut} />
+          }
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
