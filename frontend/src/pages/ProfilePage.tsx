@@ -4,6 +4,7 @@ import { MdFoodBank, MdOutlineModeComment } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { Bussines } from "../components/Bussines";
 import Header from "../components/Header";
+import "./ProfilePage.css";
 
 import { Reservation, Restaurant, User } from "../utils/types";
 
@@ -154,18 +155,26 @@ export function ProfilePage({ currentUser, signOut }: Props) {
               </div>
             </section>
           </aside>
-          <aside className="right-side">
-            <div className="right-side-container">
+          <aside className="right-side-reservation">
+            <div className="right-sidee">
               <form className="reservations-feed">
                 <h2>Reservations</h2>
                 <div className="reservations">
-                  {restaurant.reservations.map((reservation) => (
-                    <>
-                      <h2 className="h2-reservation">{reservation.time}</h2>
-                    </>
-                  ))}
+                    <div className="details">
+                      <h3>Details</h3>
+                      <h3>Due</h3>
+                      </div>
+                      <div className="reservation-content">
+                      <div className="user-reservation">
+                        <h4>Name: Bob Sanders</h4>
+                        <p>Time: 18:00</p>
+                      </div>
+                      <div className="date-reservation">
+                      <p>Date:25.10.2022</p>
+                      <button className="reservation-delete">Delete</button>
+                      </div>
+                      </div>
                 </div>
-                <button>Delete</button>
               </form>
             </div>
             <div></div>
