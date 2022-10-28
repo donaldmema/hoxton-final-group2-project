@@ -30,8 +30,8 @@ function LogedinPage({ currentUser, signOut }: Props) {
       <Bussines />
       <Header currentUser={currentUser} signOut={signOut} />
       <Search setRestaurants={setRestaurants} />
-      <Reservations />
       <Restaurants restaurants={restaurants} currentUser={currentUser} />
+      <Reservations />
     </div>
   );
 }
