@@ -62,35 +62,32 @@ export function FindNextAvailable({
   }
 
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
-    if (!currentUser) navigate("/signin");
-    else {
-      navigate(`/restaurants/${modalRestaurant.id}`);
+    navigate(`/restaurants/${modalRestaurant.id}`);
 
-      //   const reservation = {
-      //     date: finalDate,
-      //     time: time,
-      //     restaurantId: restaurant.id,
-      //     userId: currentUser!.id,
-      //   };
+    //   const reservation = {
+    //     date: finalDate,
+    //     time: time,
+    //     restaurantId: restaurant.id,
+    //     userId: currentUser!.id,
+    //   };
 
-      //   fetch(
-      //     `http://localhost:3005/reservation/${reservation.userId}/${reservation.restaurantId}`,
-      //     {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify(reservation),
-      //     }
-      //   )
-      //     .then((response) => response.json())
-      //     .then((data) => {
-      //       toast.success("Reservation successful!");
-      //     });
+    //   fetch(
+    //     `http://localhost:3005/reservation/${reservation.userId}/${reservation.restaurantId}`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(reservation),
+    //     }
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       toast.success("Reservation successful!");
+    //     });
 
-      //   console.log(reservation);
-      //   toast.success("Reservation made successfully!");
-    }
+    //   console.log(reservation);
+    //   toast.success("Reservation made successfully!");
   }
 
   return (
