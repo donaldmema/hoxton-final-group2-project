@@ -148,6 +148,25 @@ app.get("/restaurants/:id", async (req, res) => {
   }
 });
 
+app.patch("/restaurants/:id/patch", async (req, res) => {
+  try {
+    // @ts-ignore
+    const restaurant = await prisma.restaurant.update({
+      where: { id: Number(req.params.id) },
+      data: {
+        // @ts-ignore
+        name: req.body.name
+      },
+      include: { reviews: true, reservations: true, images: true },
+    });
+
+    res.send(restaurant);
+  } catch (error) {
+    // @ts-ignore
+    res.status(500).send({ error: error.message });
+  }
+});
+
 //This endpoint will get all the reviews for a restaurant by id
 app.get("/restaurants/:id/reviews", async (req, res) => {
   try {

@@ -32,10 +32,6 @@ function RestaurantDetails({ currentUser, signOut }: Props) {
     return <div>Loading...</div>;
   }
 
-  if (!currentUser) {
-    navigate("/signin");
-  }
-
   return (
     <>
       <Bussines />

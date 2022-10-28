@@ -17,6 +17,7 @@ export function ProfilePage({ currentUser, signOut }: Props) {
   const [readMore, setReadMore] = React.useState(true);
   const [users, setUsers] = React.useState<User[]>([]);
   const [reservations, setReservations] = React.useState<Reservation[]>([]);
+  const [isEditingName, setIsEditingName] = React.useState(false);
 
   if (currentUser && !restaurant) {
     fetch(`http://localhost:3005/users/${currentUser.id}/restaurant`)
@@ -41,6 +42,33 @@ export function ProfilePage({ currentUser, signOut }: Props) {
   if (!restaurant) return <div>Loading...</div>;
 
   if (currentUser === null) return <div>Loading...</div>;
+
+  function handleUpdateNameSubmit(event) {
+    event.preventDefault();
+
+    fetch(`http://localhost:3005/restaurants/${restaurant.id}/patch`, {
+      method: "PATCH",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        name: event.target.name.value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setRestaurant(response)
+        setIsEditingName(false)
+      });
+  }
+
+  function updateNameForm() {
+    return (
+      <form onSubmit={handleUpdateNameSubmit}>
+        <input name="name" defaultValue={restaurant.name} />
+
+        <input type="submit" value="Update" />
+      </form>
+    );
+  }
 
   return (
     <>
@@ -70,8 +98,13 @@ export function ProfilePage({ currentUser, signOut }: Props) {
             </nav>
             <section className="description">
               <div id="description-overview">
-                <h1>{restaurant.name}</h1>
-                <button className="addphotos-btn">Change name</button>
+                {isEditingName ? updateNameForm() : <h1>{restaurant.name}</h1>}
+                <button
+                  className="addphotos-btn"
+                  onClick={() => setIsEditingName(true)}
+                >
+                  Change name
+                </button>
                 <div className="icons-container">
                   <div className="icons-row ">
                     <MdOutlineModeComment />
@@ -104,11 +137,11 @@ export function ProfilePage({ currentUser, signOut }: Props) {
               </div>
               <div id="description-photos">
                 <div className="photos-btn">
-                <h2>
-                  {restaurant.images.length}{" "}
-                  {restaurant.images.length === 1 ? "Photo" : "Photos"}
-                </h2>
-                <button className="addphotos-btn">Add Photos</button>
+                  <h2>
+                    {restaurant.images.length}{" "}
+                    {restaurant.images.length === 1 ? "Photo" : "Photos"}
+                  </h2>
+                  <button className="addphotos-btn">Add Photos</button>
                 </div>
                 <div className="description-photos-map">
                   {restaurant.images.map((image) => (
@@ -164,20 +197,20 @@ export function ProfilePage({ currentUser, signOut }: Props) {
               <form className="reservations-feed">
                 <h2>Reservations</h2>
                 <div className="reservations">
-                    <div className="details">
-                      <h3>Details</h3>
-                      <h3>Due</h3>
-                      </div>
-                      <div className="reservation-content">
-                      <div className="user-reservation">
-                        <h4>Name: Bob Sanders</h4>
-                        <p>Time: 18:00</p>
-                      </div>
-                      <div className="date-reservation">
+                  <div className="details">
+                    <h3>Details</h3>
+                    <h3>Due</h3>
+                  </div>
+                  <div className="reservation-content">
+                    <div className="user-reservation">
+                      <h4>Name: Bob Sanders</h4>
+                      <p>Time: 18:00</p>
+                    </div>
+                    <div className="date-reservation">
                       <p>Date:25.10.2022</p>
                       <button className="reservation-delete">Delete</button>
-                      </div>
-                      </div>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>

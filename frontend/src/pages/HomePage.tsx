@@ -30,7 +30,7 @@ function HomePage({ currentUser, signOut }: Props) {
       <Bussines />
       <Header currentUser={currentUser} signOut={signOut} />
       <Search setRestaurants={setRestaurants} />
-      <Restaurants restaurants={restaurants} />
+      <Restaurants restaurants={restaurants} currentUser={currentUser} />
       <JoinUs />
     </div>
   );

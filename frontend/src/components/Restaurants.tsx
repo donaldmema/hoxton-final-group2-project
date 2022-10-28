@@ -7,10 +7,12 @@ import { FindNextAvailable } from "./FindNextAvailable";
 
 type Props = {
   restaurants: Restaurant[];
+  currentUser: any;
 };
 
-export function Restaurants({ restaurants }: Props) {
+export function Restaurants({ restaurants, currentUser }: Props) {
   const [seeAvailableDates, setSeeAvailableDates] = useState(false);
+  const [modalRestaurant, setModalRestaurant] = useState<Restaurant>();
 
   return (
     <>
@@ -37,6 +39,7 @@ export function Restaurants({ restaurants }: Props) {
               </Link>
               <button
                 onClick={() => {
+                  setModalRestaurant(restaurant);
                   setSeeAvailableDates(true);
                 }}
               >
@@ -44,7 +47,11 @@ export function Restaurants({ restaurants }: Props) {
               </button>
             </div>
             {seeAvailableDates ? (
-              <FindNextAvailable setSeeAvailableDates={setSeeAvailableDates} />
+              <FindNextAvailable
+                setSeeAvailableDates={setSeeAvailableDates}
+                modalRestaurant={modalRestaurant}
+                currentUser={currentUser}
+              />
             ) : null}
           </>
         ))}

@@ -13,6 +13,7 @@ import { MdPayment } from "react-icons/md";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Navigate, useNavigate } from "react-router-dom";
 
 type Props = {
   restaurant: Restaurant;
@@ -22,6 +23,8 @@ type Props = {
 function Description({ restaurant, currentUser }: Props) {
   const [readMore, setReadMore] = React.useState(true);
   const [users, setUsers] = React.useState<User[]>([]);
+
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     fetch(`http://localhost:3005/users`)
@@ -139,10 +142,14 @@ function Description({ restaurant, currentUser }: Props) {
             </div>
             <div id="description-reviews">
               <h2>
-                What {restaurant.reviews.length}{" "}
-                {restaurant.reviews.length === 1
+                { restaurant.reviews.length === 0 ? 
+                "No reviews, be the first to review this restaurant!"
+                :
+                `What ${restaurant.reviews.length}
+                ${restaurant.reviews.length === 1
                   ? "person is saying"
                   : "people are saying"}
+                `}
               </h2>
               {currentUser?.role.toLowerCase() === "user" ? (
                 <form
@@ -235,7 +242,15 @@ function Description({ restaurant, currentUser }: Props) {
           <div className="right-side-container">
             <form
               className="right-side-reservation"
-              onSubmit={(event) => handleSubmit(event)}
+              onSubmit={currentUser 
+                ? 
+                (event) => handleSubmit(event)
+                 : 
+                  (event) => {
+                    event.preventDefault();
+                    navigate("/signin")
+                  }
+              }
             >
               <h2>Make a reservation</h2>
               <label>
