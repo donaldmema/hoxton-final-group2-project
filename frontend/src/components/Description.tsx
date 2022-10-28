@@ -71,7 +71,7 @@ function Description({ restaurant, currentUser }: Props) {
     )
       .then((response) => response.json())
       .then((data) => {
-        toast.success("Reservation successful!");
+        // toast.success("Reservation successful!");
       });
 
     console.log(reservation);

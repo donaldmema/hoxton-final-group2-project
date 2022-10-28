@@ -209,7 +209,28 @@ export function ProfilePage({ currentUser, signOut }: Props) {
                       </div>
                       <div className="date-reservation">
                         <p>{reservation.date}</p>
-                        <button className="reservation-delete">Delete</button>
+                        <button
+                          className="reservation-delete"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            fetch(
+                              `http://localhost:3005/reservation/${reservation.id}`,
+                              {
+                                method: "DELETE",
+                              }
+                            )
+                              .then((rsp) => rsp.json())
+                              .then((data) => console.log(data));
+                            setReservations(
+                              reservations.filter(
+                                (currentReservation) =>
+                                  currentReservation.id !== reservation.id
+                              )
+                            );
+                          }}
+                        >
+                          Delete
+                        </button>
                       </div>
                     </div>
                   </div>
