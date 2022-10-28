@@ -297,6 +297,20 @@ li {
   border-radius: 5px;
   text-align: center;
 }
+
+.time.unavailable {
+  /* background-color: gray;
+  color: #2d333f; */
+
+  cursor: not-allowed;
+  /* pointer-events: none; */
+  background-color: darkgray !important;
+}
+
+.time.unavailable:hover {
+  background-color: gray;
+}
+
 .time:hover {
   background-color: #931b23;
 }
@@ -356,14 +370,14 @@ a {
   align-items: center;
   gap: 10px;
 }
-.addphotos-btn{
+.addphotos-btn {
   width: 100px;
   height: 30px;
   border: thin solid #da3644;
   background-color: transparent;
   border-radius: 5px;
 }
-.photos-btn{
+.photos-btn {
   display: grid;
   grid-auto-flow: column;
   justify-content: flex-start;
