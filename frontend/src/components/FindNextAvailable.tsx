@@ -94,9 +94,7 @@ export function FindNextAvailable({
     <div className="available-dates-modal__wrapper">
       <div className="available-dates-modal__container">
         <div className="modal__top">
-          <h1 className="modal__restaurants-name">
-            Restaurant's name{modalRestaurant.name}
-          </h1>
+          <h1 className="modal__restaurants-name">{modalRestaurant.name}</h1>
           <button
             className="modal__close-button"
             onClick={() => {

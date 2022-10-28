@@ -55,8 +55,8 @@ export function ProfilePage({ currentUser, signOut }: Props) {
     })
       .then((response) => response.json())
       .then((response) => {
-        setRestaurant(response)
-        setIsEditingName(false)
+        setRestaurant(response);
+        setIsEditingName(false);
       });
   }
 
@@ -196,7 +196,25 @@ export function ProfilePage({ currentUser, signOut }: Props) {
             <div className="right-sidee">
               <form className="reservations-feed">
                 <h2>Reservations</h2>
-                <div className="reservations">
+                {reservations.map((reservation) => (
+                  <div key={reservation.id} className="reservations">
+                    <div className="details">
+                      <h3>Details</h3>
+                      <h3>Date</h3>
+                    </div>
+                    <div className="reservation-content">
+                      <div className="user-reservation">
+                        <h4>Name: {reservation.claimedBy.name}</h4>
+                        <p>Time: {reservation.time}</p>
+                      </div>
+                      <div className="date-reservation">
+                        <p>{reservation.date}</p>
+                        <button className="reservation-delete">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {/* <div className="reservations">
                   <div className="details">
                     <h3>Details</h3>
                     <h3>Due</h3>
@@ -211,7 +229,7 @@ export function ProfilePage({ currentUser, signOut }: Props) {
                       <button className="reservation-delete">Delete</button>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </form>
             </div>
             <div></div>
