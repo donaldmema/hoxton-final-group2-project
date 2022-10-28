@@ -13,7 +13,6 @@ type Props = {
 };
 
 function LogedinPage({ currentUser, signOut }: Props) {
-
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   useEffect(() => {
     fetch("http://localhost:3005/restaurants")
@@ -33,7 +32,7 @@ function LogedinPage({ currentUser, signOut }: Props) {
       <Header currentUser={currentUser} signOut={signOut} />
       <Search setRestaurants={setRestaurants} />
       <Restaurants restaurants={restaurants} currentUser={currentUser} />
-      <Reservations reservations={currentUser.reservations} />
+      <Reservations />
     </div>
   );
 }

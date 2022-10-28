@@ -1,19 +1,13 @@
-type Props = {
-  reservations: any;
-};
-
-export function Reservations({ reservations }: Props) {
+export function Reservations() {
   return (
     <div className="reservations">
       <h2>Here are all the Reservations for you!</h2>
       <ul className="reservations-list">
-        {reservations.map((reservation: any) => (
-          <li key={reservation.id}>
-            <h3>{reservation.restaurant.name}</h3>
-            <p>{reservation.date}</p>
-            <p>{reservation.time}</p>
-          </li>
-        ))}
+        <li>
+          <h4 style={{ textAlign: "center", lineHeight: 5, padding: 10 }}>
+            You have no upcoming reservations.
+          </h4>
+        </li>
       </ul>
     </div>
   );
