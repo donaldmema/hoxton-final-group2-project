@@ -18,6 +18,7 @@ export function ProfilePage({ currentUser, signOut }: Props) {
   const [users, setUsers] = React.useState<User[]>([]);
   const [reservations, setReservations] = React.useState<Reservation[]>([]);
   const [isEditingName, setIsEditingName] = React.useState(false);
+  const [isAddingImagge, setIsAddingImage] = React.useState(false);
 
   if (currentUser && !restaurant) {
     fetch(`http://localhost:3005/users/${currentUser.id}/restaurant`)
@@ -59,17 +60,41 @@ export function ProfilePage({ currentUser, signOut }: Props) {
         setIsEditingName(false);
       });
   }
+  function handleAddImageSubmit(event) {
+    event.preventDefault();
+
+    fetch(`http://localhost:3005/image/${restaurant?.id}`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        url: event.target.url.value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        restaurant?.images.push(response)
+        setIsAddingImage(false);
+      });
+  }
 
   function updateNameForm() {
     return (
       <form onSubmit={handleUpdateNameSubmit}>
-        <input name="name" defaultValue={restaurant.name} />
+        <input name="name" required defaultValue={restaurant.name} />
 
         <input type="submit" value="Update" />
       </form>
     );
   }
+  function addImageForm() {
+    return (
+      <form onSubmit={handleAddImageSubmit}>
+        <input name="url" required />
 
+        <input type="submit" value="Add Image" />
+      </form>
+    );
+  }
   return (
     <>
       <Bussines />
@@ -141,7 +166,15 @@ export function ProfilePage({ currentUser, signOut }: Props) {
                     {restaurant.images.length}{" "}
                     {restaurant.images.length === 1 ? "Photo" : "Photos"}
                   </h2>
-                  <button className="addphotos-btn">Add Photos</button>
+                  {isAddingImagge ? addImageForm() : null}
+                  <button
+                    className="addphotos-btn"
+                    onClick={() => {
+                      setIsAddingImage(true);
+                    }}
+                  >
+                    Add Photos
+                  </button>
                 </div>
                 <div className="description-photos-map">
                   {restaurant.images.map((image) => (
