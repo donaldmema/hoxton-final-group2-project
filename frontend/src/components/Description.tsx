@@ -32,6 +32,21 @@ function Description({ restaurant, currentUser }: Props) {
       .then((data) => setUsers(data));
   }, []);
 
+  function dateIsAvailable(date: Date, time: String): boolean {
+    let dateNo = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let finalDate = `${dateNo}/${month}/${year}`;
+
+    let available = true;
+    restaurant.reservations.forEach((reservation: any) => {
+      if (reservation.date === finalDate && reservation.time === time) {
+        available = false;
+      }
+    });
+    return available;
+  }
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     //date should be in this format: 28/10/2022
@@ -278,14 +293,14 @@ function Description({ restaurant, currentUser }: Props) {
                 <label>
                   Time
                   <select id="time" name="time" required>
-                    <option value="5:30 PM">5:30 PM</option>
-                    <option value="6:00 PM">6:00 PM</option>
-                    <option value="6:30 PM">6:30 PM</option>
-                    <option value="7:00 PM">7:00 PM</option>
-                    <option value="7:30 PM">7:30 PM</option>
-                    <option value="8:00 PM">8:00 PM</option>
-                    <option value="8:30 PM">8:30 PM</option>
-                    <option value="9:00 PM">9:00 PM</option>
+                    {dateIsAvailable(new Date(), "5:30 PM") ? <option value="5:30 PM">5:30 PM</option> : null}
+                    {dateIsAvailable(new Date(), "6:00 PM") ? <option value="6:00 PM">6:00 PM</option> : null}
+                    {dateIsAvailable(new Date(), "6:30 PM") ? <option value="6:30 PM">6:30 PM</option> : null}
+                    {dateIsAvailable(new Date(), "7:00 PM") ? <option value="7:00 PM">7:00 PM</option> : null}
+                    {dateIsAvailable(new Date(), "7:30 PM") ? <option value="7:30 PM">7:30 PM</option> : null}
+                    {dateIsAvailable(new Date(), "8:00 PM") ? <option value="8:00 PM">8:00 PM</option> : null}
+                    {dateIsAvailable(new Date(), "8:30 PM") ? <option value="8:30 PM">8:30 PM</option> : null}
+                    {dateIsAvailable(new Date(), "9:00 PM") ? <option value="9:00 PM">9:00 PM</option> : null}
                   </select>
                 </label>
               </div>
