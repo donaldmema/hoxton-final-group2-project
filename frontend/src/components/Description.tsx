@@ -293,14 +293,14 @@ function Description({ restaurant, currentUser }: Props) {
                 <label>
                   Time
                   <select id="time" name="time" required>
-                    {dateIsAvailable(new Date(), "5:30 PM") ? <option value="5:30 PM">5:30 PM</option> : null}
-                    {dateIsAvailable(new Date(), "6:00 PM") ? <option value="6:00 PM">6:00 PM</option> : null}
-                    {dateIsAvailable(new Date(), "6:30 PM") ? <option value="6:30 PM">6:30 PM</option> : null}
-                    {dateIsAvailable(new Date(), "7:00 PM") ? <option value="7:00 PM">7:00 PM</option> : null}
-                    {dateIsAvailable(new Date(), "7:30 PM") ? <option value="7:30 PM">7:30 PM</option> : null}
-                    {dateIsAvailable(new Date(), "8:00 PM") ? <option value="8:00 PM">8:00 PM</option> : null}
-                    {dateIsAvailable(new Date(), "8:30 PM") ? <option value="8:30 PM">8:30 PM</option> : null}
-                    {dateIsAvailable(new Date(), "9:00 PM") ? <option value="9:00 PM">9:00 PM</option> : null}
+                    {dateIsAvailable(new Date(), "5:30 PM") ? <option value="5:30 PM">5:30 PM</option> : <option value="5:30 PM" disabled>5:30 PM</option>}
+                    {dateIsAvailable(new Date(), "6:00 PM") ? <option value="6:00 PM">6:00 PM</option> : <option value="6:00 PM" disabled>6:00 PM</option>}
+                    {dateIsAvailable(new Date(), "6:30 PM") ? <option value="6:30 PM">6:30 PM</option> : <option value="6:30 PM" disabled>6:30 PM</option>}
+                    {dateIsAvailable(new Date(), "7:00 PM") ? <option value="7:00 PM">7:00 PM</option> : <option value="7:00 PM" disabled>7:00 PM</option>}
+                    {dateIsAvailable(new Date(), "7:30 PM") ? <option value="7:30 PM">7:30 PM</option> : <option value="7:30 PM" disabled>7:30 PM</option>}
+                    {dateIsAvailable(new Date(), "8:00 PM") ? <option value="8:00 PM">8:00 PM</option> : <option value="8:00 PM" disabled>8:00 PM</option>}
+                    {dateIsAvailable(new Date(), "8:30 PM") ? <option value="8:30 PM">8:30 PM</option> : <option value="8:30 PM" disabled>8:30 PM</option>}
+                    {dateIsAvailable(new Date(), "9:00 PM") ? <option value="9:00 PM">9:00 PM</option> : <option value="9:00 PM" disabled>9:00 PM</option>}
                   </select>
                 </label>
               </div>
